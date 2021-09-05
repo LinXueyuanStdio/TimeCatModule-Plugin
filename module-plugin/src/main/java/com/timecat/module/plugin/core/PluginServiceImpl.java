@@ -3,17 +3,11 @@ package com.timecat.module.plugin.core;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 
-import com.blankj.utilcode.util.FileUtils;
 import com.timecat.component.commonsdk.utils.override.LogUtil;
 import com.timecat.identity.readonly.PluginHub;
 import com.timecat.identity.service.PluginService;
-import com.timecat.module.plugin.remote.DownloadListener;
-import com.timecat.module.plugin.manager.picturebed.PictureBedPluginConstants;
 import com.xiaojinzi.component.anno.ServiceAnno;
-
-import java.io.File;
 
 /**
  * @author 林学渊
@@ -44,16 +38,15 @@ public class PluginServiceImpl implements PluginService {
 
     @Override
     public boolean existPlugin(String filename) {
-        String path = PictureBedPluginConstants.getPluginAbsPath(context, filename);
-        return !TextUtils.isEmpty(path) && new File(path).exists();
+        return true;
     }
 
     private Bundle getBundle(String zipAbsPathForPlugin,
-                             String partName,
-                             String activity_class_name,
-                             Bundle extra,
-                             Uri data,
-                             String action) {
+            String partName,
+            String activity_class_name,
+            Bundle extra,
+            Uri data,
+            String action) {
         Bundle bundle = new Bundle();
         LogUtil.se(zipAbsPathForPlugin);
         LogUtil.se(partName);
