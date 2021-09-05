@@ -23,6 +23,7 @@ class PluginCloudActivity : BaseRefreshListActivity() {
     override fun getAdapter(): RecyclerView.Adapter<*> = adapter
 
     override fun onRefresh() {
+
         lifecycleScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
 
