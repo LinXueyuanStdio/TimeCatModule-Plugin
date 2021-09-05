@@ -22,7 +22,7 @@ fun downloadRemotePlugin(
     remotePlugin: PluginInfo,
     localPlugin: Plugin?,
     listener: DownloadListener
-): Disposable {
+): Disposable? {
     if (localPlugin == null) {
         //两个都下载
         return download2Files(
@@ -48,6 +48,7 @@ fun downloadRemotePlugin(
             return downloadFile(remotePlugin.pluginZipUrl, remotePlugin.pluginZipFile(context), listener)
         }
     }
+    return null
 }
 
 fun download2Files(
@@ -80,7 +81,6 @@ fun download2Files(
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
             {
-                DownloadUtil.writeFile2Disk(it, toFile, listener)
             },
             {
                 listener.onFailure()

@@ -7,6 +7,7 @@ import com.timecat.module.plugin.adapter.LocalPluginItem
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.page.base.friend.toolbar.BaseListActivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
@@ -17,12 +18,13 @@ import kotlinx.coroutines.withContext
  * @usage
  */
 class PluginUpdateActivity : BaseListActivity() {
-    override fun title(): String = "插件更新"
     val adapter = BaseAdapter(null)
+
+    override fun title(): String = "插件更新"
     override fun getAdapter(): RecyclerView.Adapter<*> = adapter
 
     override fun loadData() {
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launch(Dispatchers.IO) {
             val allPlugin = PluginDatabase.forFile(context).pluginDao().getAll()
             val items = allPlugin.map { LocalPluginItem(context, it) }
             withContext(Dispatchers.Main) {
