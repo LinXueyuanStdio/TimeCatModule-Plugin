@@ -18,6 +18,7 @@ dependencies {
     api rootProject.ext.timecat["component-CommonStatic"]
     api rootProject.ext.timecat["middle-setting"]
     api rootProject.ext.timecat["middle-block"]
+    api rootProject.ext.timecat["shared-host"]
 
     api "com.tencent.shadow.dynamic:host:$shadow_version"
 }
