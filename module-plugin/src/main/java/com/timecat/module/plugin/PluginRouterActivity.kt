@@ -27,7 +27,7 @@ class PluginRouterActivity :Activity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_load)
+        setContentView(R.layout.plugin_activity_router)
         mViewGroup = findViewById(R.id.container)
         startPlugin()
     }
