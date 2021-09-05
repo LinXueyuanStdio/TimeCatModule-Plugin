@@ -3,6 +3,7 @@ package com.timecat.module.plugin
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.layout.ui.entity.BaseAdapter
+import com.timecat.module.plugin.adapter.LocalPluginItem
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.page.base.friend.toolbar.BaseListActivity
 import kotlinx.coroutines.Dispatchers
@@ -23,8 +24,9 @@ class PluginUpdateActivity : BaseListActivity() {
     override fun loadData() {
         lifecycleScope.launchWhenResumed {
             val allPlugin = PluginDatabase.forFile(context).pluginDao().getAll()
+            val items = allPlugin.map { LocalPluginItem(context, it) }
             withContext(Dispatchers.Main) {
-
+                adapter.reload(items)
             }
         }
     }
