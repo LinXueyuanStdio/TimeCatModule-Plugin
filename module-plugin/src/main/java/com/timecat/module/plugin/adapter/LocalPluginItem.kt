@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.timecat.layout.ui.entity.BaseItem
+import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.layout.ui.standard.progress.CircularProgressButton
 import com.timecat.module.plugin.R
 import com.timecat.module.plugin.database.Plugin
@@ -36,6 +37,14 @@ class LocalPluginItem(
         val subType: CircularProgressButton by lazy { root.findViewById(R.id.sub_type) }
         val more: ImageView by lazy { root.findViewById(R.id.more) }
         val delay: TextView by lazy { root.findViewById(R.id.delay) }
+
+        init {
+            subType.idleText = "升级"
+            subType.completeText = "打开"
+            subType.errorText = "错误"
+            subType.isIndeterminateProgressMode = false
+            delay.text = "本地"
+        }
     }
 
     override fun getLayoutRes(): Int = R.layout.plugin_item_local_plugin
@@ -52,6 +61,15 @@ class LocalPluginItem(
         payloads: MutableList<Any>?
     ) {
         holder.title.text = plugin.title
-        holder.subType.idleText = ""
+        val stateText = "管理器：${plugin.managerVersionName}(${plugin.managerVersionCode})\n" +
+            "插件包：${plugin.pluginVersionName}(${plugin.pluginVersionCode})"
+        holder.state.text = stateText
+        holder.subType.setShakelessClickListener {
+            //升级
+
+        }
+        holder.root.setShakelessClickListener {
+            //打开
+        }
     }
 }

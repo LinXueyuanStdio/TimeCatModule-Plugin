@@ -1,6 +1,7 @@
 package com.same.ui
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import com.timecat.module.plugin.PluginCloudActivity
 import com.xiaojinzi.component.impl.*
 
 class MainActivity : Activity() {
@@ -15,8 +17,8 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         val linearLayout = LinearLayout(this)
         linearLayout.orientation = LinearLayout.VERTICAL
-        linearLayout.addView(createButton("登录") {
-
+        linearLayout.addView(createButton("插件市场") {
+            startActivity(Intent(this, PluginCloudActivity::class.java))
         })
         setContentView(linearLayout)
     }

@@ -56,6 +56,7 @@
             />
         <activity android:name=".PluginRouterActivity" />
         <activity android:name=".PluginUpdateActivity" />
+        <activity android:name=".PluginCloudActivity" />
         <!--dynamic activity注册 end -->
     </application>
 
