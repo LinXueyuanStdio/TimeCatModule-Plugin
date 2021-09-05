@@ -1,0 +1,9 @@
+apply from: "${project.rootDir}/gradle/library_header.gradle"
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api rootProject.ext.timecat["component-SelfRouter"]
+    api rootProject.ext.androidx_lib["appcompat"]
+}
+
+apply from: "${project.rootDir}/gradle/library_tail.gradle"

@@ -4,3 +4,4 @@ apply from: "context.gradle"
 
 include ':app'
 include ':module-plugin'
+include ':shared-host'
