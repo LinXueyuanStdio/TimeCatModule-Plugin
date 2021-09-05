@@ -15,52 +15,6 @@ import java.io.Serializable
  * @description null
  * @usage null
  */
-data class PluginModel(
-    val name: String,
-    val data: List<PluginInfo>
-) : Serializable
-
-const val RemotePlugin = 0
-const val AssetsPlugin = 1
-const val LocalPlugin = 2
-
-data class PartPlugin(
-    val partKey: String,
-    val activityList: List<String> = listOf(),
-    val serviceList: List<String> = listOf(),
-) : Serializable {
-    companion object {
-        fun fromJson(json: String) = fromJson(JSON.parseObject(json))
-        fun fromJson(jsonObject: JSONObject): PartPlugin {
-            val partKey: String = jsonObject.getString("partKey")
-            val activityList = jsonObject.getStringList("activityList")
-            val serviceList = jsonObject.getStringList("serviceList")
-            return PartPlugin(partKey, activityList, serviceList)
-        }
-
-        fun JSONObject.getStringList(key: String): MutableList<String> {
-            return getJSONArray(key)?.toListString() ?: mutableListOf()
-        }
-
-        fun JSONArray.toListString(): MutableList<String> {
-            val list: MutableList<String> = mutableListOf()
-            for (i in this) {
-                list.add(i.toString())
-            }
-            return list
-        }
-    }
-
-    fun toJsonObject(): JSONObject {
-        val jsonObject = JSONObject()
-        jsonObject["partKey"] = partKey
-        jsonObject["activityList"] = activityList
-        jsonObject["serviceList"] = serviceList
-        return jsonObject
-    }
-
-}
-
 data class PluginInfo(
     var uuid: String,
     var type: Int,
@@ -135,8 +89,44 @@ data class PluginInfo(
     override fun toString(): String = toJsonObject().toJSONString()
 
     fun toLocalPlugin(): Plugin = Plugin(0, uuid, type, name, managerVersionCode, managerVersionName, pluginVersionCode, pluginVersionName)
-    fun getPluginManagerFile(context: Context): File = toLocalPlugin().managerApkFile(context)
-    fun getPluginZipFile(context: Context): File = toLocalPlugin().pluginZipFile(context)
+    fun managerApkFile(context: Context): File = toLocalPlugin().managerApkFile(context)
+    fun pluginZipFile(context: Context): File = toLocalPlugin().pluginZipFile(context)
+}
+
+data class PartPlugin(
+    val partKey: String,
+    val activityList: List<String> = listOf(),
+    val serviceList: List<String> = listOf(),
+) : Serializable {
+    companion object {
+        fun fromJson(json: String) = fromJson(JSON.parseObject(json))
+        fun fromJson(jsonObject: JSONObject): PartPlugin {
+            val partKey: String = jsonObject.getString("partKey")
+            val activityList = jsonObject.getStringList("activityList")
+            val serviceList = jsonObject.getStringList("serviceList")
+            return PartPlugin(partKey, activityList, serviceList)
+        }
+
+        fun JSONObject.getStringList(key: String): MutableList<String> {
+            return getJSONArray(key)?.toListString() ?: mutableListOf()
+        }
+
+        fun JSONArray.toListString(): MutableList<String> {
+            val list: MutableList<String> = mutableListOf()
+            for (i in this) {
+                list.add(i.toString())
+            }
+            return list
+        }
+    }
+
+    fun toJsonObject(): JSONObject {
+        val jsonObject = JSONObject()
+        jsonObject["partKey"] = partKey
+        jsonObject["activityList"] = activityList
+        jsonObject["serviceList"] = serviceList
+        return jsonObject
+    }
 }
 
 fun JSONObject.getPartPluginList(key: String): MutableList<PartPlugin> {
