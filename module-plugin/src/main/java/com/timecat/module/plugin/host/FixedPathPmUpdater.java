@@ -1,4 +1,4 @@
-package com.timecat.module.plugin.host.manager;
+package com.timecat.module.plugin.host;
 
 import com.tencent.shadow.dynamic.host.PluginManagerUpdater;
 
@@ -12,7 +12,6 @@ public class FixedPathPmUpdater implements PluginManagerUpdater {
     FixedPathPmUpdater(File apk) {
         this.apk = apk;
     }
-
 
     @Override
     public boolean wasUpdating() {

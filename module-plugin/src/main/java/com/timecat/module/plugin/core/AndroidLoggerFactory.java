@@ -1,4 +1,4 @@
-package com.timecat.module.plugin.host;
+package com.timecat.module.plugin.core;
 
 import android.util.Log;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-public class AndroidLogLoggerFactory implements ILoggerFactory {
+public class AndroidLoggerFactory implements ILoggerFactory {
 
     private static final int LOG_LEVEL_TRACE = 5;
     private static final int LOG_LEVEL_DEBUG = 4;
@@ -18,7 +18,7 @@ public class AndroidLogLoggerFactory implements ILoggerFactory {
     private static final int LOG_LEVEL_WARN = 2;
     private static final int LOG_LEVEL_ERROR = 1;
 
-    private static AndroidLogLoggerFactory sInstance = new AndroidLogLoggerFactory();
+    private static AndroidLoggerFactory sInstance = new AndroidLoggerFactory();
 
     public static ILoggerFactory getInstance() {
         return sInstance;

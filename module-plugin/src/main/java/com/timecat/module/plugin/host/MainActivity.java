@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.timecat.identity.readonly.PluginHub;
+import com.timecat.module.plugin.PluginRouterActivity;
 import com.timecat.module.plugin.R;
 
 public class MainActivity extends Activity {
@@ -33,8 +34,7 @@ public class MainActivity extends Activity {
         final Spinner partKeySpinner = new Spinner(this);
         ArrayAdapter<String> partKeysAdapter = new ArrayAdapter<>(this, R.layout.part_key_adapter);
         partKeysAdapter.addAll(
-                PluginHub.PART_KEY_PLUGIN_MAIN_APP,
-                PluginHub.PART_KEY_PLUGIN_ANOTHER_APP
+        "start"
         );
         partKeySpinner.setAdapter(partKeysAdapter);
 
@@ -46,16 +46,9 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String partKey = (String) partKeySpinner.getSelectedItem();
-                Intent intent = new Intent(MainActivity.this, PluginLoadActivity.class);
+                Intent intent = new Intent(MainActivity.this, PluginRouterActivity.class);
                 intent.putExtra(PluginHub.KEY_PLUGIN_PART_KEY, partKey);
-                switch (partKey) {
-                    //为了演示多进程多插件，其实两个插件内容完全一样，除了所在进程
-                    case PluginHub.PART_KEY_PLUGIN_MAIN_APP:
-                    case PluginHub.PART_KEY_PLUGIN_ANOTHER_APP:
-                        intent.putExtra(PluginHub.KEY_CLASSNAME, "com.tencent.shadow.sample.plugin.app.lib.gallery.splash.SplashActivity");
-                        break;
-
-                }
+                intent.putExtra(PluginHub.KEY_CLASSNAME, "com.tencent.shadow.sample.plugin.app.lib.gallery.splash.SplashActivity");
                 startActivity(intent);
             }
         });

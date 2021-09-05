@@ -1,110 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.timecat.module.plugin">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 读电话号码-->
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" /> <!--拨打电话 -->
-
-    <!-- 必须的权限： -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />  <!-- 设备信息 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络通信-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- apn信息 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- mac地址-->
-
-    <!-- 可选的权限： -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 异常堆栈sdcard存储 -->
-    <uses-permission android:name="android.permission.READ_LOGS" /> <!-- 异常上报系统log -->
-
-    <!-- 音频需要的权限： -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!-- 摄像头需要的权限： -->
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
-
-    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-
-    <!-- 通过GPS得到精确位置 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- 通过网络得到粗略位置 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- 访问网络. 某些位置信息需要从网络服务器获取 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 访问WiFi状态. 需要WiFi信息用于网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- 修改WiFi状态. 发起WiFi扫描, 需要WiFi信息用于网络定位 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <!-- 访问网络状态, 检测网络的可用性. 需要网络运营商相关信息用于网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 访问网络的变化, 需要某些信息用于网络定位 -->
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <!-- 访问手机当前状态, 需要某些信息用于网络定位 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <uses-permission android:name="oicq.wlogin_sdk.permission.WloginProvider.READ" />
-    <uses-permission android:name="oicq.wlogin_sdk.permission.WloginProvider.WRITE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
-    <application
-        android:name="com.timecat.extend.arms.BaseApplication"
-        android:allowBackup="true"
-        android:label="Shadow Dyanamic测试宿主App"
-        android:theme="@style/ThemeLight"
-        tools:ignore="GoogleAppIndexingWarning">
+    <application>
         <meta-data
-            android:name="com.timecat.module.plugin.host.GlobalConfiguration"
+            android:name="com.timecat.module.plugin.core.GlobalConfiguration"
             android:value="ConfigModule" />
-        <activity android:name="com.timecat.module.plugin.host.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <provider
             android:name="com.tencent.shadow.core.runtime.container.PluginContainerContentProvider"
-            android:authorities="com.tencent.shadow.contentprovider.my.dynamic"
+            android:authorities="${applicationId}.contentprovider.authority.dynamic"
             android:grantUriPermissions="true"
             android:process=":plugin" />
 
         <service
-            android:name="com.timecat.module.plugin.host.PluginProcessPPS"
+            android:name=".container.MainPluginProcessService"
             android:process=":plugin" />
         <service
-            android:name="com.timecat.module.plugin.host.Plugin2ProcessPPS"
+            android:name=".container.SecondPluginProcessPPS"
             android:process=":plugin2" />
 
-        <activity
-            android:name="com.timecat.module.plugin.host.PluginLoadActivity"
-            android:launchMode="standard"
-            android:screenOrientation="portrait" />
 
         <!--dynamic activity注册
           注意configChanges需要全注册
           theme需要注册成透明
+
+          这些类不打包在host中，打包在runtime中，以便减少宿主方法数增量
           -->
         <activity
             android:name="com.tencent.shadow.sample.plugin.runtime.PluginDefaultProxyActivity"
@@ -132,8 +53,9 @@
             android:multiprocess="true"
             android:screenOrientation="portrait"
             android:theme="@style/troop_Transparent"
-
             />
+        <activity android:name=".PluginRouterActivity" />
+        <activity android:name=".PluginUpdateActivity" />
         <!--dynamic activity注册 end -->
     </application>
 

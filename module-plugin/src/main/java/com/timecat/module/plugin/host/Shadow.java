@@ -1,4 +1,4 @@
-package com.timecat.module.plugin.host.manager;
+package com.timecat.module.plugin.host;
 
 import com.tencent.shadow.dynamic.host.DynamicPluginManager;
 import com.tencent.shadow.dynamic.host.PluginManager;

@@ -1,4 +1,4 @@
-package com.timecat.module.plugin.host;
+package com.timecat.module.plugin.core;
 
 import android.app.ActivityManager;
 import android.app.Application;
@@ -9,25 +9,16 @@ import android.webkit.WebView;
 
 import com.tencent.shadow.core.common.LoggerFactory;
 import com.tencent.shadow.dynamic.host.DynamicRuntime;
-import com.tencent.shadow.dynamic.host.PluginManager;
-import com.timecat.module.plugin.host.manager.Shadow;
+import com.timecat.module.plugin.host.PluginHelper;
 import com.timecat.plugin.shared.HostUiLayerProvider;
-
-import java.io.File;
 
 import static android.os.Process.myPid;
 
 public class HostApplication {
-    private static HostApplication sApp;
-
-    private PluginManager mPluginManager;
-
-    public void onCreate(Context context) {
-        sApp = this;
-
+    public static void onCreate(Context context) {
         detectNonSdkApiUsageOnAndroidP();
         setWebViewDataDirectorySuffix();
-        LoggerFactory.setILoggerFactory(new AndroidLogLoggerFactory());
+        LoggerFactory.setILoggerFactory(new AndroidLoggerFactory());
 
         if (isProcess(context, ":plugin")) {
             //在全动态架构中，Activity组件没有打包在宿主而是位于被动态加载的runtime，
@@ -55,20 +46,6 @@ public class HostApplication {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         builder.detectNonSdkApiUsage();
         StrictMode.setVmPolicy(builder.build());
-    }
-
-    public static HostApplication getApp() {
-        return sApp;
-    }
-
-    public void loadPluginManager(File apk) {
-        if (mPluginManager == null) {
-            mPluginManager = Shadow.getPluginManager(apk);
-        }
-    }
-
-    public PluginManager getPluginManager() {
-        return mPluginManager;
     }
 
     private static boolean isProcess(Context context, String processName) {
