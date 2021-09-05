@@ -2,6 +2,18 @@ apply from: "${project.rootDir}/gradle/module_header.gradle"
 
 android {
     resourcePrefix "plugin_" //给 Module 内的资源名增加前缀, 避免资源名冲突
+
+    defaultConfig {
+        // Used by Room, to test migrations
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                ]
+            }
+        }
+    }
+
     buildFeatures{
         dataBinding = true
         // viewBinding = true
@@ -20,6 +32,8 @@ dependencies {
     api rootProject.ext.timecat["component-CommonBmob"]
     api rootProject.ext.timecat["component-CommonStatic"]
     api rootProject.ext.timecat["shared-host"]
+
+    kapt rootProject.ext.androidx_lib["androidx.room:compiler"]
 
     api "com.tencent.shadow.dynamic:host:$shadow_version"
 }
