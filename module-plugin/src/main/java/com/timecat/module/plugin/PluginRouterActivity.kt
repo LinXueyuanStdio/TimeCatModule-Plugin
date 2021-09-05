@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.tencent.shadow.dynamic.host.EnterCallback
 import com.timecat.identity.readonly.PluginHub
-import com.timecat.module.plugin.host.PluginHelper
+import com.timecat.middle.block.ext.launch
+import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.host.Shadow
+import kotlinx.coroutines.Dispatchers
 
 /**
  * @author 林学渊
@@ -19,7 +21,7 @@ import com.timecat.module.plugin.host.Shadow
  *      控制插件生命周期，必要时自动下载插件、更新插件
  * @usage ARouter
  */
-class PluginRouterActivity :Activity(){
+class PluginRouterActivity : Activity() {
 
     private lateinit var mViewGroup: ViewGroup
 
@@ -29,29 +31,34 @@ class PluginRouterActivity :Activity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.plugin_activity_router)
         mViewGroup = findViewById(R.id.container)
-        startPlugin()
+        val plugin: Plugin? = intent.getSerializableExtra("plugin") as? Plugin
+        if (plugin == null) {
+            finish()
+        } else {
+            this.launch(Dispatchers.IO) {
+                startPlugin(plugin)
+            }
+        }
     }
 
-    fun startPlugin() {
-        PluginHelper.getInstance().singlePool.execute {
-            val bundle = Bundle()
-            bundle.putString(PluginHub.KEY_PLUGIN_ZIP_PATH, PluginHelper.getInstance().pluginZipFile.absolutePath)
-            bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, intent.getStringExtra(PluginHub.KEY_PLUGIN_PART_KEY))
-            bundle.putString(PluginHub.KEY_CLASSNAME, intent.getStringExtra(PluginHub.KEY_CLASSNAME))
+    fun startPlugin(plugin: Plugin) {
+        val bundle = Bundle()
+        bundle.putString(PluginHub.KEY_PLUGIN_ZIP_PATH, plugin.pluginZipFile(this).absolutePath)
+        bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, intent.getStringExtra(PluginHub.KEY_PLUGIN_PART_KEY))
+        bundle.putString(PluginHub.KEY_CLASSNAME, intent.getStringExtra(PluginHub.KEY_CLASSNAME))
 
-            val pluginManager = Shadow.getPluginManager(PluginHelper.getInstance().pluginManagerFile)
-            pluginManager.enter(this@PluginRouterActivity, PluginHub.FROM_ID_START_ACTIVITY, bundle, object : EnterCallback {
-                override fun onShowLoadingView(view: View) {
-                    mHandler.post { mViewGroup.addView(view) }
-                }
+        val pluginManager = Shadow.getPluginManager(plugin.managerApkFile(this))
+        pluginManager.enter(this@PluginRouterActivity, PluginHub.FROM_ID_START_ACTIVITY, bundle, object : EnterCallback {
+            override fun onShowLoadingView(view: View) {
+                mHandler.post { mViewGroup.addView(view) }
+            }
 
-                override fun onCloseLoadingView() {
-                    finish()
-                }
+            override fun onCloseLoadingView() {
+                finish()
+            }
 
-                override fun onEnterComplete() {}
-            })
-        }
+            override fun onEnterComplete() {}
+        })
     }
 
     override fun onDestroy() {

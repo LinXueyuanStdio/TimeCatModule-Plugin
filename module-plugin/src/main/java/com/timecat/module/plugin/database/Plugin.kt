@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.io.File
+import java.io.Serializable
 
 /**
  * @author 林学渊
@@ -32,7 +33,9 @@ data class Plugin(
 
     var pluginVersionCode: Int,
     var pluginVersionName: String,
-) {
+
+    var mainActivity: String,
+) : Serializable {
     fun managerApkFile(context: Context): File = PluginDir.managerApkFile(context, this)
     fun pluginZipFile(context: Context): File = PluginDir.pluginZipFile(context, this)
 }

@@ -88,7 +88,7 @@ data class PluginInfo(
 
     override fun toString(): String = toJsonObject().toJSONString()
 
-    fun toLocalPlugin(): Plugin = Plugin(0, uuid, type, name, managerVersionCode, managerVersionName, pluginVersionCode, pluginVersionName)
+    fun toLocalPlugin(): Plugin = Plugin(0, uuid, type, name, managerVersionCode, managerVersionName, pluginVersionCode, pluginVersionName, "")
     fun managerApkFile(context: Context): File = toLocalPlugin().managerApkFile(context)
     fun pluginZipFile(context: Context): File = toLocalPlugin().pluginZipFile(context)
 }

@@ -7,6 +7,10 @@
             android:name="com.timecat.module.plugin.core.GlobalConfiguration"
             android:value="ConfigModule" />
 
+        <activity android:name="com.timecat.module.plugin.PluginRouterActivity" />
+        <activity android:name="com.timecat.module.plugin.PluginUpdateActivity" />
+        <activity android:name="com.timecat.module.plugin.PluginCloudActivity" />
+
         <provider
             android:name="com.tencent.shadow.core.runtime.container.PluginContainerContentProvider"
             android:authorities="${applicationId}.contentprovider.authority.dynamic"
@@ -52,11 +56,7 @@
             android:launchMode="singleTask"
             android:multiprocess="true"
             android:screenOrientation="portrait"
-            android:theme="@style/troop_Transparent"
-            />
-        <activity android:name=".PluginRouterActivity" />
-        <activity android:name=".PluginUpdateActivity" />
-        <activity android:name=".PluginCloudActivity" />
+            android:theme="@style/troop_Transparent" />
         <!--dynamic activity注册 end -->
     </application>
 

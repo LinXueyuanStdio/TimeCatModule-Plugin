@@ -9,7 +9,6 @@ import android.webkit.WebView;
 
 import com.tencent.shadow.core.common.LoggerFactory;
 import com.tencent.shadow.dynamic.host.DynamicRuntime;
-import com.timecat.module.plugin.host.PluginHelper;
 import com.timecat.plugin.shared.HostUiLayerProvider;
 
 import static android.os.Process.myPid;
@@ -26,8 +25,6 @@ public class HostApplication {
             //因此这里恢复加载上一次的runtime
             DynamicRuntime.recoveryRuntime(context);
         }
-
-        PluginHelper.getInstance().init(context);
 
         HostUiLayerProvider.init(context);
     }
