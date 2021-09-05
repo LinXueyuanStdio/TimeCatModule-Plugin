@@ -38,7 +38,7 @@
             android:launchMode="standard"
             android:multiprocess="true"
             android:screenOrientation="portrait"
-            android:theme="@style/troop_Transparent" />
+            android:theme="@style/Plugin_Transparent" />
 
         <activity
             android:name="com.tencent.shadow.test.dynamic.runtime.container.PluginSingleInstance1ProxyActivity"
@@ -47,7 +47,7 @@
             android:launchMode="singleInstance"
             android:multiprocess="true"
             android:screenOrientation="portrait"
-            android:theme="@style/troop_Transparent" />
+            android:theme="@style/Plugin_Transparent" />
 
         <activity
             android:name="com.tencent.shadow.test.dynamic.runtime.container.PluginSingleTask1ProxyActivity"
@@ -56,7 +56,7 @@
             android:launchMode="singleTask"
             android:multiprocess="true"
             android:screenOrientation="portrait"
-            android:theme="@style/troop_Transparent" />
+            android:theme="@style/Plugin_Transparent" />
         <!--dynamic activity注册 end -->
     </application>
 
