@@ -1,0 +1,41 @@
+buildscript {
+    apply from: "${gradle.ext.localGradleDir}/settings/deps.gradle"
+
+    repositories {
+        maven { url "file://${gradle.ext.localMavenDir.absolutePath}" }
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo1.maven.org/maven2/" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.0'
+        classpath classpath.kotlin
+        classpath classpath.component_router
+        classpath classpath.bugly
+        classpath classpath.analysis
+        classpath classpath.upload
+    }
+}
+
+allprojects {
+
+    repositories {
+        maven { url "file://${gradle.ext.localMavenDir.absolutePath}" }
+
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo1.maven.org/maven2/" }
+
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" } // for org-java
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,1 @@
+apply from: "${gradle.ext.localGradleDir}/library/header.gradle"

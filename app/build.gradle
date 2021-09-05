@@ -1,0 +1,15 @@
+apply from: "${gradle.ext.localGradleDir}/project/fake.gradle"
+
+android {
+    ndkVersion "21.3.6528147"
+    buildFeatures{
+        dataBinding = true
+        // viewBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.androidx_lib["appcompat"]
+//    api project(':module-git')
+}
