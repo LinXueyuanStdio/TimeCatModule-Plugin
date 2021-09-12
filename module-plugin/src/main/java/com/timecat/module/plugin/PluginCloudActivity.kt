@@ -60,4 +60,9 @@ class PluginCloudActivity : BaseRefreshListActivity() {
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dispose?.dispose()
+    }
 }

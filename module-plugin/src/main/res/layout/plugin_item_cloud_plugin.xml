@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/front_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/view_common_selector"
+    android:clickable="true"
+    android:focusable="true">
+
+    <View
+        android:id="@+id/container_hint"
+        android:layout_width="@dimen/margin_tiny"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rect_accent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--头像-->
+    <eu.davidea.flipview.FlipView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/chat_item_avatar_size"
+        android:layout_height="@dimen/chat_item_avatar_size"
+        android:layout_marginStart="@dimen/margin_double"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
+        app:checked="false"
+        app:enableInitialAnimation="false"
+        app:frontImage="@drawable/ic_folder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rearBackgroundColor="@color/trans" />
+
+    <!--分割线-->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="@dimen/vm_dimen_0"
+        android:layout_height="@dimen/vm_dimen_0_5"
+        android:layout_marginStart="@dimen/margin_small"
+        android:background="@color/trans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/avatar" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/spacing_smaller"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingTop="@dimen/spacing_micro"
+        android:singleLine="true"
+        android:textColor="@color/master_textColorPrimary"
+        android:textSize="@dimen/font_normal"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toStartOf="@+id/sub_type"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="@+id/avatar"
+        tools:text="@string/temp" />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_smaller"
+        android:paddingTop="@dimen/spacing_micro"
+        android:text="12:20"
+        android:textColor="@color/master_textColorSecondary"
+        android:textSize="@dimen/vm_size_12"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <Button
+        android:id="@+id/sub_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/more"
+        android:text="@string/download"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:max="100"
+        android:progressDrawable="@drawable/custom_event_progress"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

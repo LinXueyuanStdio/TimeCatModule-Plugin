@@ -5,3 +5,6 @@ apply from: "context.gradle"
 include ':app'
 include ':module-plugin'
 include ':shared-host'
+
+include ':api:record-api'
+include ':api:record-api-holder'
