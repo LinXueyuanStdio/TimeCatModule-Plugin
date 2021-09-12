@@ -78,40 +78,25 @@
         app:layout_constraintStart_toEndOf="@+id/avatar"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    <com.timecat.layout.ui.standard.progress.CircularProgressButton
+    <Button
         android:id="@+id/sub_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
+        android:layout_marginEnd="10dp"
         android:contentDescription="@string/more"
-        android:padding="10dp"
-        app:layout_constraintEnd_toStartOf="@id/more"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/master_icon_view_hint" />
-
-    <ImageView
-        android:id="@+id/more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="@string/more"
-        android:padding="10dp"
-        android:src="@drawable/ic_help"
+        android:text="@string/download"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/master_icon_view_hint" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/delay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:paddingStart="@dimen/margin_small"
-        android:paddingEnd="@dimen/margin_small"
-        android:text="记录符文"
-        android:textColor="@color/master_textColorSecondary"
-        android:textSize="@dimen/font_size_xsmall"
-        app:layout_constraintEnd_toEndOf="@id/more"
-        app:layout_constraintTop_toBottomOf="@id/more" />
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:max="100"
+        android:progressDrawable="@drawable/custom_event_progress"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,11 +31,12 @@ dependencies {
     api rootProject.ext.timecat["middle-block"]
     api rootProject.ext.timecat["component-CommonBmob"]
     api rootProject.ext.timecat["component-CommonStatic"]
+
     api rootProject.ext.timecat["shared-host"]
+    api rootProject.ext.dependencies["shadow-dynamic-host"]
 
     kapt rootProject.ext.androidx_lib["androidx.room:compiler"]
-
-    api "com.tencent.shadow.dynamic:host:$shadow_version"
+    api 'com.github.Z-P-J:ZDownloader:1.0.0'
 }
 
 apply from: "${project.rootDir}/gradle/module_tail.gradle"

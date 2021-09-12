@@ -57,6 +57,7 @@
             android:multiprocess="true"
             android:screenOrientation="portrait"
             android:theme="@style/Plugin_Transparent" />
+        <activity android:name=".PluginDownloadActivity" />
         <!--dynamic activity注册 end -->
     </application>
 

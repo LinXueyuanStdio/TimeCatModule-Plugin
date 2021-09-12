@@ -19,6 +19,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.jess.arms.base.delegate.AppLifecycles;
+import com.timecat.module.plugin.DownloadConfigKt;
+import com.timecat.module.plugin.download.DownloadNotificationInterceptor;
+import com.zpj.downloader.ZDownloader;
 
 import androidx.annotation.NonNull;
 
@@ -41,6 +44,15 @@ public class AppLifecyclesImpl implements AppLifecycles {
     @Override
     public void onCreate(@NonNull Application application) {
         HostApplication.onCreate(application);
+
+        // 配置下载器
+        ZDownloader.config(application)
+                   .setNotificationInterceptor(new DownloadNotificationInterceptor())
+                   .setDownloadPath(DownloadConfigKt.getDownloadPath())
+                   .setConcurrentMissionCount(DownloadConfigKt.getMaxDownloadConcurrentCount())
+                   .setEnableNotification(DownloadConfigKt.getShowDownloadNotification())
+                   .setProducerThreadCount(DownloadConfigKt.getMaxDownloadThreadCount())
+                   .init();
     }
 
     @Override

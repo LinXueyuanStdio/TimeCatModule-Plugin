@@ -27,6 +27,9 @@ abstract class PluginDao : BaseDao<Plugin> {
     @Query("SELECT * FROM Plugin ORDER BY `id` DESC")
     abstract fun getAll(): MutableList<Plugin>
 
+    @Query("SELECT * FROM Plugin WHERE uuid IN(:ids) ORDER BY `id` DESC")
+    abstract fun getAll(ids: List<String>): MutableList<Plugin>
+
     @Query("SELECT * FROM Plugin ORDER BY `id` DESC LIMIT :pageSize OFFSET :offset")
     abstract fun getAll(pageSize: Int, offset: Int): MutableList<Plugin>
 
