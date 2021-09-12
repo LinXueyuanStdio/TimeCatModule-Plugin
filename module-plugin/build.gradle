@@ -32,9 +32,9 @@ dependencies {
     api rootProject.ext.timecat["component-CommonBmob"]
     api rootProject.ext.timecat["component-CommonStatic"]
 
+    api rootProject.ext.timecat["plugin-record-api-holder"]
     api rootProject.ext.timecat["shared-host"]
     api rootProject.ext.dependencies["shadow-dynamic-host"]
-    api project(':api:record-api-holder')
 
     kapt rootProject.ext.androidx_lib["androidx.room:compiler"]
     api 'com.github.Z-P-J:ZDownloader:1.0.0'

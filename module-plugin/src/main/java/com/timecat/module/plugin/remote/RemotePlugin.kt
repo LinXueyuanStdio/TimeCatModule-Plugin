@@ -17,7 +17,7 @@ import java.io.Serializable
  */
 data class PluginInfo(
     var uuid: String,
-    var type: Int,
+    var type: Long,
     var name: String,
 
     var managerVersionCode: Int,
@@ -41,7 +41,7 @@ data class PluginInfo(
         fun fromJson(json: String) = fromJson(JSON.parseObject(json))
         fun fromJson(jsonObject: JSONObject): PluginInfo {
             val uuid: String = jsonObject.getString("uuid")
-            val type: Int = jsonObject.getInteger("type")
+            val type: Long = jsonObject.getLong("type")
             val name: String = jsonObject.getString("name")
 
             val managerVersionCode: Int = jsonObject.getInteger("managerVersionCode")
