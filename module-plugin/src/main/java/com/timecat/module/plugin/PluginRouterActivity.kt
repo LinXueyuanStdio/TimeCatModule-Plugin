@@ -6,10 +6,14 @@ import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import com.tencent.shadow.dynamic.host.EnterCallback
+import com.timecat.component.router.app.NAV
 import com.timecat.identity.readonly.PluginHub
+import com.timecat.identity.readonly.RouterHub
 import com.timecat.middle.block.ext.launch
 import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.host.Shadow
+import com.xiaojinzi.component.anno.AttrValueAutowiredAnno
+import com.xiaojinzi.component.anno.RouterAnno
 import kotlinx.coroutines.Dispatchers
 
 /**
@@ -21,22 +25,25 @@ import kotlinx.coroutines.Dispatchers
  *      控制插件生命周期，必要时自动下载插件、更新插件
  * @usage ARouter
  */
+@RouterAnno(hostAndPath = RouterHub.PLUGIN_PluginRouterActivity)
 class PluginRouterActivity : Activity() {
+    @AttrValueAutowiredAnno("plugin")
+    var plugin: Plugin? = null
 
     private lateinit var mViewGroup: ViewGroup
 
     private val mHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        NAV.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.plugin_activity_router)
         mViewGroup = findViewById(R.id.container)
-        val plugin: Plugin? = intent.getSerializableExtra("plugin") as? Plugin
         if (plugin == null) {
             finish()
         } else {
             this.launch(Dispatchers.IO) {
-                startPlugin(plugin)
+                startPlugin(plugin!!)
             }
         }
     }
@@ -57,7 +64,8 @@ class PluginRouterActivity : Activity() {
                 finish()
             }
 
-            override fun onEnterComplete() {}
+            override fun onEnterComplete() {
+            }
         })
     }
 

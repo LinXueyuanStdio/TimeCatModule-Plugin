@@ -3,6 +3,10 @@ apply from: "${project.rootDir}/gradle/library_header.gradle"
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api rootProject.ext.androidx_lib["appcompat"]
+    api "com.tencent.shadow.core:utils:$shadow_version"
+    api "com.tencent.shadow.core:common:$shadow_version"
+    api "com.tencent.shadow.dynamic:apk:$shadow_version"
+    api project(':api:record-api')
 }
 
 apply from: "${project.rootDir}/gradle/library_tail.gradle"

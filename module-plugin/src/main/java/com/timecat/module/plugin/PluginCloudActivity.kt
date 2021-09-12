@@ -4,10 +4,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.data.bmob.ext.bmob.requestBlock
 import com.timecat.data.bmob.ext.net.allPluginApp
+import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.module.plugin.adapter.CloudPluginItem
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.page.base.friend.toolbar.BaseRefreshListActivity
+import com.xiaojinzi.component.anno.RouterAnno
 import com.zpj.downloader.ZDownloader
 import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,7 @@ import kotlinx.coroutines.withContext
  * @description 插件市场
  * @usage
  */
+@RouterAnno(hostAndPath = RouterHub.PLUGIN_PluginCloudActivity)
 class PluginCloudActivity : BaseRefreshListActivity() {
     override fun title(): String = "插件市场"
     val adapter = BaseAdapter(null)

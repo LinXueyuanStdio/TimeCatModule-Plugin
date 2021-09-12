@@ -14,6 +14,8 @@ import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.module.plugin.R
 import com.timecat.module.plugin.database.Plugin
+import com.timecat.module.plugin.host.Shadow
+import com.timecat.plugin.api.record.holder.DynamicRecordApi
 import com.zpj.downloader.BaseMission
 import com.zpj.downloader.constant.Error
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -63,7 +65,7 @@ class CloudPluginItem(
 
     class MissionHolder(
         val holder: DetailVH,
-        val mission: BaseMission<*>? = null,
+        var mission: BaseMission<*>? = null,
         val onRun: () -> Unit,
     ) : BaseMission.MissionListener {
         init {
@@ -165,7 +167,8 @@ class CloudPluginItem(
     }
 
     fun run() {
-
+        if (plugin == null) return
+        val api = DynamicRecordApi(context, plugin.managerApkFile(context))
     }
 
     override fun onViewDetached(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: DetailVH, position: Int) {

@@ -4,11 +4,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.data.bmob.ext.bmob.requestBlock
 import com.timecat.data.bmob.ext.net.allPluginApp
+import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.module.plugin.adapter.LocalPluginItem
 import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.page.base.friend.toolbar.BaseListActivity
+import com.xiaojinzi.component.anno.RouterAnno
 import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,6 +23,7 @@ import kotlinx.coroutines.withContext
  * @description 插件更新管理，所有插件的更新，用户手动更新
  * @usage
  */
+@RouterAnno(hostAndPath = RouterHub.PLUGIN_PluginUpdateActivity)
 class PluginUpdateActivity : BaseListActivity() {
     val adapter = BaseAdapter(null)
 

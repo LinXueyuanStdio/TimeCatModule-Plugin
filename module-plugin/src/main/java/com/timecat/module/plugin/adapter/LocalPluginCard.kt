@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.timecat.data.bmob.data.common.Block
 import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.layout.ui.layout.setShakelessClickListener
+import com.timecat.middle.block.service.ItemCommonListener
 import com.timecat.module.plugin.R
 import com.timecat.module.plugin.database.Plugin
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -23,10 +24,11 @@ import eu.davidea.viewholders.FlexibleViewHolder
  * @description null
  * @usage null
  */
-class LocalPluginItem(
+class LocalPluginCard(
     val context: Context,
-    val plugin: Plugin
-) : BaseItem<LocalPluginItem.DetailVH>(plugin.uuid) {
+    val plugin: Plugin,
+    val listener:ItemCommonListener
+) : BaseItem<LocalPluginCard.DetailVH>(plugin.uuid) {
 
     class DetailVH(val root: View, adapter: FlexibleAdapter<*>) : FlexibleViewHolder(root, adapter) {
         val frontView: ConstraintLayout by lazy { root.findViewById(R.id.front_view) }

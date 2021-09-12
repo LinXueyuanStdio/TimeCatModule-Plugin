@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import com.timecat.data.room.BaseDao
+import com.timecat.middle.block.service.ContainerService
 
 /**
  * @author 林学渊
@@ -32,13 +33,6 @@ abstract class PluginDao : BaseDao<Plugin> {
 
     @Query("SELECT * FROM Plugin ORDER BY `id` DESC LIMIT :pageSize OFFSET :offset")
     abstract fun getAll(pageSize: Int, offset: Int): MutableList<Plugin>
-
-    @Transaction
-    open fun listSpaces(): MutableList<Plugin> {
-        val list = mutableListOf<Plugin>()
-        list.addAll(getAll())
-        return list
-    }
 
     @Query("SELECT count(*) FROM Plugin")
     abstract fun count(): Int

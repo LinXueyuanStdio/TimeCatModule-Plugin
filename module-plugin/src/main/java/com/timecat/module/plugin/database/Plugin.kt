@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.timecat.component.setting.DEF
 import java.io.File
 import java.io.Serializable
 
@@ -25,7 +26,7 @@ data class Plugin(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
     var uuid: String,
-    var type: Int,
+    var type: Long = TYPE_PluginEnter,
     var title: String,
 
     var managerVersionCode: Int,
@@ -35,7 +36,43 @@ data class Plugin(
     var pluginVersionName: String,
 
     var mainActivity: String,
-) : Serializable {
+) : Serializable, IPluginStatus {
     fun managerApkFile(context: Context): File = PluginDir.managerApkFile(context, this)
     fun pluginZipFile(context: Context): File = PluginDir.pluginZipFile(context, this)
+    override fun toString(): String {
+        return "uuid=${uuid}, title=${title}, $type, ${statusDescription()}"
+    }
+
+    //region 2. IPluginStatus
+    //region Status 用 16 进制管理状态
+    override fun updateStatus(s: Long, yes: Boolean) {
+        super.updateStatus(s, yes)
+        DEF.filter().putLong("DomainState", type)
+    }
+
+    /**
+     * 往状态集中加一个状态
+     * @param status status
+     */
+    override fun addStatus(status: Long) {
+        this.type = this.type or status
+    }
+
+    /**
+     * 往状态集中移除一个状态
+     * @param status status
+     */
+    override fun removeStatus(status: Long) {
+        this.type = this.type and status.inv()
+    }
+
+    /**
+     * 状态集中是否包含某状态
+     * @param status status
+     */
+    override fun isStatusEnabled(status: Long): Boolean {
+        return this.type and status != 0L
+    }
+    //endregion
+    //endregion
 }
