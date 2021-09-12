@@ -59,8 +59,7 @@ class LocalPluginCard(
         payloads: MutableList<Any>?
     ) {
         holder.title.text = plugin.title
-        val stateText = "管理器：${plugin.managerVersionName}(${plugin.managerVersionCode})\n" +
-            "插件包：${plugin.pluginVersionName}(${plugin.pluginVersionCode})"
+        val stateText = "管理器：${plugin.managerVersionName}(${plugin.managerVersionCode})"
         holder.state.text = stateText
         holder.subType.text = "打开"
         holder.subType.setShakelessClickListener {

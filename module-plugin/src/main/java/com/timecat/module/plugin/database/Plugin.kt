@@ -31,14 +31,10 @@ data class Plugin(
 
     var managerVersionCode: Int,
     var managerVersionName: String,
-
-    var pluginVersionCode: Int,
-    var pluginVersionName: String,
-
-    var mainActivity: String,
 ) : Serializable, IPluginStatus {
+
     fun managerApkFile(context: Context): File = PluginDir.managerApkFile(context, this)
-    fun pluginZipFile(context: Context): File = PluginDir.pluginZipFile(context, this)
+
     override fun toString(): String {
         return "uuid=${uuid}, title=${title}, $type, ${statusDescription()}"
     }

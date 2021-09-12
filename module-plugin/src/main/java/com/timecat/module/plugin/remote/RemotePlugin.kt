@@ -27,15 +27,6 @@ data class PluginInfo(
      * 动态加载的插件管理apk
      */
     var managerFilename: String,
-
-    var pluginVersionCode: Int,
-    var pluginVersionName: String,
-    var pluginZipUrl: String,
-    /**
-     * 动态加载的插件包，里面包含以下几个部分，插件apk，插件框架apk（loader apk和runtime apk）, apk信息配置关系json文件
-     */
-    var pluginZipFilename: String,
-    val parts: List<PartPlugin> = listOf(),
 ) : Serializable {
     companion object {
         fun fromJson(json: String) = fromJson(JSON.parseObject(json))
@@ -48,20 +39,10 @@ data class PluginInfo(
             val managerVersionName: String = jsonObject.getString("managerVersionName")
             val managerUrl: String = jsonObject.getString("managerUrl")
             val managerFilename: String = jsonObject.getString("managerFilename")
-
-            val pluginVersionCode: Int = jsonObject.getInteger("pluginVersionCode")
-            val pluginVersionName: String = jsonObject.getString("pluginVersionName")
-            val pluginZipUrl: String = jsonObject.getString("pluginZipUrl")
-            val pluginZipFilename: String = jsonObject.getString("pluginZipFilename")
-
-            val parts = jsonObject.getPartPluginList("parts")
             return PluginInfo(
                 uuid, type, name,
                 managerVersionCode, managerVersionName,
                 managerUrl, managerFilename,
-                pluginVersionCode, pluginVersionName,
-                pluginZipUrl, pluginZipFilename,
-                parts,
             )
         }
     }
@@ -76,21 +57,12 @@ data class PluginInfo(
         jsonObject["managerVersionName"] = managerVersionName
         jsonObject["managerUrl"] = managerUrl
         jsonObject["managerFilename"] = managerFilename
-
-        jsonObject["pluginVersionCode"] = pluginVersionCode
-        jsonObject["pluginVersionName"] = pluginVersionName
-        jsonObject["pluginZipUrl"] = pluginZipUrl
-        jsonObject["pluginZipFilename"] = pluginZipFilename
-
-        jsonObject["parts"] = parts.map { it.toJsonObject() }
         return jsonObject
     }
 
     override fun toString(): String = toJsonObject().toJSONString()
 
-    fun toLocalPlugin(): Plugin = Plugin(0, uuid, type, name, managerVersionCode, managerVersionName, pluginVersionCode, pluginVersionName, "")
-    fun managerApkFile(context: Context): File = toLocalPlugin().managerApkFile(context)
-    fun pluginZipFile(context: Context): File = toLocalPlugin().pluginZipFile(context)
+    fun toLocalPlugin(): Plugin = Plugin(0, uuid, type, name, managerVersionCode, managerVersionName)
 }
 
 data class PartPlugin(

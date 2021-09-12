@@ -24,7 +24,7 @@ abstract class PluginDatabase : RoomDatabase() {
 
     companion object {
         const val NAME = "timecat_plugin_room.db"
-        const val EXPORT_VERSION = 1
+        const val EXPORT_VERSION = 2
 
         @JvmStatic
         var instance: PluginDatabase? = null

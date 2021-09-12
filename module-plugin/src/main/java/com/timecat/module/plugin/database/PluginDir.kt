@@ -27,17 +27,11 @@ import java.io.File
 object PluginDir {
     const val PLUGIN_DEPLOY_PATH = "plugins"
     const val PLUGIN_MANAGER_PATH = "manager"
-    const val PLUGIN_PLUGIN_PATH = "plugin"
 
     /**
      * 动态加载的插件管理apk
      */
     const val sPluginManagerName = "plugin-manager.apk"
-
-    /**
-     * 动态加载的插件包，里面包含以下几个部分，插件apk，插件框架apk（loader apk和runtime apk）, apk信息配置关系json文件
-     */
-    const val sPluginZip = "plugin-release.zip"
 
     /**
      * 缓存目录
@@ -71,11 +65,4 @@ object PluginDir {
         )
     }
 
-    @JvmStatic
-    fun pluginZipFile(context: Context, plugin: Plugin): File {
-        return File(
-            getPluginDir(context),
-            "${plugin.uuid}/${PLUGIN_PLUGIN_PATH}/${plugin.pluginVersionName}/${sPluginZip}"
-        )
-    }
 }

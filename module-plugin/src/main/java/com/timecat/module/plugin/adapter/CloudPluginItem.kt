@@ -9,19 +9,27 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.component.commonsdk.extension.beGone
 import com.timecat.component.commonsdk.extension.beVisible
+import com.timecat.component.router.app.NAV
 import com.timecat.data.bmob.data.common.Block
+import com.timecat.element.alert.ToastUtil
+import com.timecat.identity.data.block.AppBlock
+import com.timecat.identity.data.block.PluginApp
+import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.layout.ui.layout.setShakelessClickListener
+import com.timecat.layout.ui.utils.ColorUtils
+import com.timecat.middle.block.ext.bindSelected
 import com.timecat.module.plugin.R
 import com.timecat.module.plugin.database.Plugin
-import com.timecat.module.plugin.host.Shadow
-import com.timecat.plugin.api.record.holder.DynamicRecordApi
 import com.zpj.downloader.BaseMission
+import com.zpj.downloader.ZDownloader
 import com.zpj.downloader.constant.Error
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.flipview.FlipView
 import eu.davidea.viewholders.FlexibleViewHolder
+import org.joda.time.DateTime
+import java.io.Serializable
 import kotlin.math.roundToInt
 
 /**
@@ -147,10 +155,19 @@ class CloudPluginItem(
         payloads: MutableList<Any>?
     ) {
         holder.title.text = block.title
-        plugin?.let {
-            val stateText = "管理器：${plugin.managerVersionName}(${plugin.managerVersionCode})\n" +
-                "插件包：${plugin.pluginVersionName}(${plugin.pluginVersionCode})"
+        val head = AppBlock.fromJson(block.structure)
+        holder.avatar.bindSelected(adapter.isSelected(adapter.getGlobalPositionOf(this)), head.header.avatar, ColorUtils.randomColor())
+        val head2 = PluginApp.fromJson(head.structure)
+        if (plugin != null) {
+            val stateText = "管理器：${plugin.managerVersionName}(${plugin.managerVersionCode})"
             holder.state.text = stateText
+        } else {
+            val info = head2.updateInfo
+            if (info.isNotEmpty()) {
+                val newest = info.first()
+                val stateText = "${newest.version_name}(${newest.version_code})    ${newest.size}    更新时间${DateTime(newest.lastUpdateTime)}"
+                holder.state.text = stateText
+            }
         }
         if (missionListener == null) {
             missionListener = MissionHolder(holder, mission) {
@@ -159,16 +176,23 @@ class CloudPluginItem(
         }
         holder.stateBtn.setShakelessClickListener {
             //升级
-//            ZDownloader.download()
+            if (plugin == null) {
+                ZDownloader.download(head.url)
+            } else {
+                run()
+            }
         }
         holder.root.setShakelessClickListener {
-            run()
+            NAV.go(RouterHub.APP_DETAIL_AppDetailActivity, "blockId", block.objectId)
         }
     }
 
     fun run() {
-        if (plugin == null) return
-        val api = DynamicRecordApi(context, plugin.managerApkFile(context))
+        if (plugin == null) {
+            ToastUtil.w("下载")
+            return
+        }
+        NAV.go(RouterHub.PLUGIN_PluginRouterActivity, "plugin", plugin as Serializable)
     }
 
     override fun onViewDetached(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: DetailVH, position: Int) {

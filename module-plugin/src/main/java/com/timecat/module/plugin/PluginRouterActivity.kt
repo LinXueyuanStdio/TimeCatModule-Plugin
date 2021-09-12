@@ -48,7 +48,6 @@ class PluginRouterActivity : Activity() {
 
     private fun startPlugin(plugin: Plugin) {
         val bundle = Bundle()
-        bundle.putString(PluginHub.KEY_PLUGIN_ZIP_PATH, plugin.pluginZipFile(this).absolutePath)
         bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, intent.getStringExtra(PluginHub.KEY_PLUGIN_PART_KEY))
         bundle.putString(PluginHub.KEY_CLASSNAME, intent.getStringExtra(PluginHub.KEY_CLASSNAME))
 
