@@ -63,12 +63,10 @@ class LocalPluginCard(
         holder.state.text = stateText
         holder.subType.text = "打开"
         holder.subType.setShakelessClickListener {
-            NAV.go(RouterHub.PLUGIN_PluginRouterActivity, "plugin", plugin as Serializable)
+            run()
         }
         holder.root.setShakelessClickListener {
-            //打开
-            val path = ApiParser.toPath(plugin)
-            listener.navigateTo(plugin.title, path, -100)
+            run()
         }
 
         if (payloads.isNullOrEmpty()) return
@@ -76,6 +74,15 @@ class LocalPluginCard(
         if (obj is Block) {
             val block = obj
             // TODO 更新
+        }
+    }
+
+    fun run() {
+        if (plugin.canRecordApi()) {
+            val path = ApiParser.toPath(plugin)
+            listener.navigateTo(plugin.title, path, -100)
+        } else if (plugin.canPluginEnter()) {
+            NAV.go(RouterHub.PLUGIN_PluginRouterActivity, "plugin", plugin as Serializable)
         }
     }
 }
