@@ -32,8 +32,6 @@ class PluginRouterActivity : Activity() {
 
     private lateinit var mViewGroup: ViewGroup
 
-    private val mHandler = Handler()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         NAV.inject(this)
         super.onCreate(savedInstanceState)
@@ -48,16 +46,18 @@ class PluginRouterActivity : Activity() {
         }
     }
 
-    fun startPlugin(plugin: Plugin) {
+    private fun startPlugin(plugin: Plugin) {
         val bundle = Bundle()
         bundle.putString(PluginHub.KEY_PLUGIN_ZIP_PATH, plugin.pluginZipFile(this).absolutePath)
         bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, intent.getStringExtra(PluginHub.KEY_PLUGIN_PART_KEY))
         bundle.putString(PluginHub.KEY_CLASSNAME, intent.getStringExtra(PluginHub.KEY_CLASSNAME))
 
-        val pluginManager = Shadow.getPluginManager(plugin.managerApkFile(this))
+        val pluginManager = Shadow.getPluginManager(this, plugin)
         pluginManager.enter(this@PluginRouterActivity, PluginHub.FROM_ID_START_ACTIVITY, bundle, object : EnterCallback {
             override fun onShowLoadingView(view: View) {
-                mHandler.post { mViewGroup.addView(view) }
+                runOnUiThread {
+                    mViewGroup.addView(view)
+                }
             }
 
             override fun onCloseLoadingView() {
