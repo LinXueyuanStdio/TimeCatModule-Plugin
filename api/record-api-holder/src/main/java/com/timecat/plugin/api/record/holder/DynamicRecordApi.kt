@@ -25,6 +25,7 @@ import com.timecat.data.room.record.RoomRecord
 import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.middle.block.service.ContainerService
 import com.timecat.middle.block.service.HomeService
+import com.timecat.middle.block.service.ParseCallback
 import com.timecat.plugin.api.record.RecordApi
 import com.timecat.plugin.api.record.RecordApiWrapper
 import java.io.File
@@ -54,6 +55,10 @@ class DynamicRecordApi(
     }
 
     //region RecordApi
+    override fun loadFor(parentPath: Path, record: RoomRecord, onParse: ParseCallback) {
+        recordApi.loadFor(parentPath, record, onParse)
+    }
+
     override fun loadContext(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService) {
         recordApi.loadContext(path, context, parentUuid, record, homeService)
     }
@@ -68,6 +73,18 @@ class DynamicRecordApi(
 
     override fun loadMoreForVirtualPath(context: Context, parentUuid: String, offset: Int, homeService: HomeService, callback: ContainerService.LoadMoreCallback) {
         recordApi.loadMoreForVirtualPath(context, parentUuid, offset, homeService, callback)
+    }
+
+    override fun onPause(context: Context) {
+        recordApi.onPause(context)
+    }
+
+    override fun onResume(context: Context) {
+        recordApi.onResume(context)
+    }
+
+    override fun onDestroy(context: Context) {
+        recordApi.onDestroy(context)
     }
     //endregion
 

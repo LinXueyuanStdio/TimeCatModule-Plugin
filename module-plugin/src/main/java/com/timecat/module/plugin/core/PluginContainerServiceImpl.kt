@@ -1,6 +1,7 @@
 package com.timecat.module.plugin.core
 
 import android.content.Context
+import com.afollestad.materialdialogs.files.fileChooser
 import com.google.android.material.chip.Chip
 import com.timecat.component.router.app.NAV
 import com.timecat.data.room.record.RoomRecord
@@ -10,13 +11,16 @@ import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.middle.block.endless.NotMoreItem
 import com.timecat.middle.block.ext.configAdapterEndlessLoad
 import com.timecat.middle.block.ext.launch
+import com.timecat.middle.block.ext.showDialog
 import com.timecat.middle.block.service.*
 import com.timecat.module.plugin.adapter.LocalPluginCard
-import com.timecat.module.plugin.adapter.LocalPluginItem
+import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.database.PluginDatabase
+import com.timecat.module.plugin.page.LocalPluginPage
 import com.xiaojinzi.component.anno.ServiceAnno
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.*
 
 /**
  * @author 林学渊
@@ -50,6 +54,12 @@ class PluginContainerServiceImpl : ContainerService {
                 text = "更新"
                 setShakelessClickListener {
                     NAV.go(RouterHub.PLUGIN_PluginUpdateActivity)
+                }
+            },
+            Chip(context).apply {
+                text = "从本地安装"
+                setShakelessClickListener {
+                    homeService.itemCommonListener().openPage(LocalPluginPage())
                 }
             }
         ))

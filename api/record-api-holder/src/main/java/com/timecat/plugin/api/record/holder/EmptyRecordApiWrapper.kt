@@ -2,6 +2,7 @@ package com.timecat.plugin.api.record.holder
 
 import android.content.Context
 import android.os.Bundle
+import com.timecat.component.commonsdk.utils.override.LogUtil
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.middle.block.service.ContainerService
@@ -34,12 +35,30 @@ class EmptyRecordApiWrapper : RecordApiWrapper {
         emptyRecordApi.loadMoreForVirtualPath(context, parentUuid, offset, homeService, callback)
     }
 
+    override fun onPause(context: Context) {
+        LogUtil.e("onPause")
+        emptyRecordApi.onPause(context)
+    }
+
+    override fun onResume(context: Context) {
+        LogUtil.e("onResume")
+        emptyRecordApi.onResume(context)
+    }
+
+    override fun onDestroy(context: Context) {
+        LogUtil.e("onDestroy")
+        emptyRecordApi.onDestroy(context)
+    }
+
     override fun onDynamicCreate(bundle: Bundle) {
+        LogUtil.e("onDynamicCreate")
     }
 
     override fun onDynamicSaveInstanceState(outState: Bundle) {
+        LogUtil.e("onDynamicSaveInstanceState")
     }
 
     override fun onDynamicDestroy() {
+        LogUtil.e("onDynamicDestroy")
     }
 }
