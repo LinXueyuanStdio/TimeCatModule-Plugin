@@ -8,7 +8,9 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
-                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true",
+                        "room.schemaLocation"  : "$projectDir/schemas".toString()
                 ]
             }
         }
@@ -34,7 +36,7 @@ dependencies {
 
     api rootProject.ext.timecat["plugin-record-api-holder"]
     api rootProject.ext.timecat["shared-host"]
-    api rootProject.ext.dependencies["shadow-dynamic-host"]
+    api "com.tencent.shadow.dynamic:host:$shadow_version"
 
     kapt rootProject.ext.androidx_lib["androidx.room:compiler"]
     api 'com.github.Z-P-J:ZDownloader:1.0.0'

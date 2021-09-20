@@ -17,7 +17,7 @@ import androidx.room.RoomDatabase
         Plugin::class,
     ],
     version = PluginDatabase.EXPORT_VERSION,
-    exportSchema = true
+    exportSchema = true,
 )
 abstract class PluginDatabase : RoomDatabase() {
     abstract fun pluginDao(): PluginDao
@@ -37,7 +37,7 @@ abstract class PluginDatabase : RoomDatabase() {
                     context.applicationContext,
                     PluginDatabase::class.java,
                     fileName
-                )
+                ).addMigrations()
                     .fallbackToDestructiveMigration()
                     .build()
             }
