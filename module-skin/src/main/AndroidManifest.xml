@@ -3,9 +3,9 @@
           package="com.timecat.module.skin">
 
     <application>
-        <activity android:name=".ThemeActivity"/>
-        <activity android:name=".ThemeDetailActivity"/>
-        <activity android:name=".DesignMySkinActivity" />
+        <activity android:name=".SkinActivity"/>
+        <activity android:name=".SkinDetailActivity"/>
+        <activity android:name=".SkinDesignActivity" />
 
         <meta-data
             android:name="com.timecat.module.skin.base.GlobalConfiguration"

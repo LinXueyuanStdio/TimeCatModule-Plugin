@@ -16,8 +16,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="com.timecat.extend.arms.BaseApplication"
@@ -26,12 +26,7 @@
         android:theme="@style/ThemeLight"
         android:usesCleartextTraffic="true"
         tools:replace="theme,allowBackup,supportsRtl,name">
-        <activity
-            android:name="com.same.ui.MainActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-            android:hardwareAccelerated="false"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan">
+        <activity android:name="com.same.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

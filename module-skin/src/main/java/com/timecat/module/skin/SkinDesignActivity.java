@@ -6,7 +6,9 @@ import android.text.TextUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.google.android.material.slider.Slider;
+import com.timecat.identity.readonly.RouterHub;
 import com.timecat.page.base.friend.toolbar.BaseRefreshListActivity;
+import com.xiaojinzi.component.anno.RouterAnno;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +30,8 @@ import skin.support.content.res.SkinCompatUserThemeManager;
  * @description null
  * @usage null
  */
-public class DesignMySkinActivity extends BaseRefreshListActivity {
+@RouterAnno(hostAndPath = RouterHub.SKIN_SkinDesignActivity)
+public class SkinDesignActivity extends BaseRefreshListActivity {
     private ColorPickerAdapter mAdapter;
 
     @NotNull

@@ -47,7 +47,7 @@ import skin.support.utils.SkinFileUtils;
  */
 @Skinable
 @RouterAnno(hostAndPath = RouterHub.SKIN_SkinDetailActivity)
-public class ThemeDetailActivity extends BaseToolbarActivity {
+public class SkinDetailActivity extends BaseToolbarActivity {
 
     @AttrValueAutowiredAnno("skinInfo")
     SkinInfo skinInfo;
@@ -299,7 +299,7 @@ public class ThemeDetailActivity extends BaseToolbarActivity {
             @Override
             public void onFailed(String errMsg) {
                 ToastUtil.e(errMsg);
-                String skinPkgPath = CustomSDCardLoader.getSkinAbsPath(ThemeDetailActivity.this, skinFileName);
+                String skinPkgPath = CustomSDCardLoader.getSkinAbsPath(SkinDetailActivity.this, skinFileName);
                 File file = new File(skinPkgPath);
                 if (file.exists() && file.delete()) {
                     checkDownloadButtonStatus(skinFileName);

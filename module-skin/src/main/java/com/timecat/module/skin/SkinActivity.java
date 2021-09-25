@@ -50,7 +50,7 @@ import io.reactivex.schedulers.Schedulers;
  * @usage null
  */
 @RouterAnno(hostAndPath = RouterHub.SKIN_SkinActivity)
-public class ThemeActivity extends BaseRefreshListActivity  {
+public class SkinActivity extends BaseRefreshListActivity  {
     ThemeAdapter<Shelf> themeAdapter;
 
     @Override
@@ -120,7 +120,7 @@ public class ThemeActivity extends BaseRefreshListActivity  {
             new SkinInfoBottomSheetDialog().showIfNeed(getSupportFragmentManager());
             return true;
         } else if (itemId == R.id.myTheme) {
-            startActivity(new Intent(this, DesignMySkinActivity.class));
+            startActivity(new Intent(this, SkinDesignActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -144,7 +144,7 @@ public class ThemeActivity extends BaseRefreshListActivity  {
 //            shelfListAdapter.openLoadAnimation();TODO
             RecyclerView recyclerView = viewHolder.getView(R.id.rv);
             recyclerView.setAdapter(shelfListAdapter);
-            recyclerView.setLayoutManager(new GridLayoutManager(ThemeActivity.this, 3));
+            recyclerView.setLayoutManager(new GridLayoutManager(SkinActivity.this, 3));
             shelfListAdapter.replaceData(shelf.list);
             new GravitySnapHelper(Gravity.START, false).attachToRecyclerView(recyclerView);
 
@@ -178,12 +178,12 @@ public class ThemeActivity extends BaseRefreshListActivity  {
             if (item instanceof SkinInfo) {
                 SkinInfo site = (SkinInfo) item;
                 String baseUrl = site.getSkin_url();
-                Glide.with(ThemeActivity.this).load(baseUrl + site.getSkin_avatar())
-                        .apply(new RequestOptions().dontAnimate()
+                Glide.with(SkinActivity.this).load(baseUrl + site.getSkin_avatar())
+                     .apply(new RequestOptions().dontAnimate()
                                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                                 .centerCrop()
                                 .placeholder(R.drawable.avatar_default))
-                        .into(((ImageView) viewHolder.getView(R.id.imageView)));
+                     .into(((ImageView) viewHolder.getView(R.id.imageView)));
                 viewHolder.setText(R.id.title, site.getSkin_name());
                 viewHolder.getView(R.id.itemView).setOnClickListener(v -> {
                     if ("恢复默认".equals(site.getSkin_name())) {
