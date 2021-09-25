@@ -46,6 +46,7 @@ class PluginCloudActivity : BaseRefreshListActivity() {
                         CloudPluginItem(context, block, mission, localPlugin)
                     }
                     withContext(Dispatchers.Main) {
+                        mRefreshLayout.isRefreshing = false
                         adapter.reload(items)
                         mStatefulLayout?.showContent()
                     }
