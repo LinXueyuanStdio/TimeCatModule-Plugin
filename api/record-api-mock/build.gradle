@@ -1,0 +1,10 @@
+apply from: "${project.rootDir}/gradle/library_header.gradle"
+apply plugin: 'kotlin-android'
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api rootProject.ext.timecat["plugin-record-api"]
+    api rootProject.ext.timecat["plugin-record-api-holder"]
+}
+
+apply from: "${project.rootDir}/gradle/library_tail.gradle"

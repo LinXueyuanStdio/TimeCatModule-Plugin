@@ -11,3 +11,4 @@ include ':shared-host'
 
 include ':api:record-api'
 include ':api:record-api-holder'
+include ':api:record-api-mock'
