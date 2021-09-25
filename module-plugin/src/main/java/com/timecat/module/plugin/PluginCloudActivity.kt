@@ -52,10 +52,12 @@ class PluginCloudActivity : BaseRefreshListActivity() {
                 }
             }
             onEmpty = {
+                mRefreshLayout.isRefreshing = false
                 adapter.clear()
                 mStatefulLayout?.showEmpty("啥也没有")
             }
             onError = {
+                mRefreshLayout.isRefreshing = false
                 adapter.clear()
                 mStatefulLayout?.showError("出错\n${it.msg}") {
                     onRefresh()

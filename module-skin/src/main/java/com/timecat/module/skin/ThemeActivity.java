@@ -49,7 +49,7 @@ import io.reactivex.schedulers.Schedulers;
  * @description null
  * @usage null
  */
-@RouterAnno(hostAndPath = RouterHub.THEME_ThemeActivity)
+@RouterAnno(hostAndPath = RouterHub.SKIN_SkinActivity)
 public class ThemeActivity extends BaseRefreshListActivity  {
     ThemeAdapter<Shelf> themeAdapter;
 
@@ -206,7 +206,7 @@ public class ThemeActivity extends BaseRefreshListActivity  {
                             }
                         });
                     } else {
-                        NAV.go("module_theme/theme/ThemeDetailActivity", "skinInfo", site);
+                        NAV.go(RouterHub.SKIN_SkinDetailActivity, "skinInfo", site);
                     }
                 });
             }

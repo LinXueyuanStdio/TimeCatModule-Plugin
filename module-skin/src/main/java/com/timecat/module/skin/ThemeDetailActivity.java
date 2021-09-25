@@ -14,6 +14,7 @@ import com.timecat.component.router.app.NAV;
 import com.timecat.data.system.model.api.SkinInfo;
 import com.timecat.data.system.network.RetrofitHelper;
 import com.timecat.element.alert.ToastUtil;
+import com.timecat.identity.readonly.RouterHub;
 import com.timecat.identity.skin.CustomSDCardLoader;
 import com.timecat.module.skin.data.DownloadListener;
 import com.timecat.page.base.friend.toolbar.BaseToolbarActivity;
@@ -45,7 +46,7 @@ import skin.support.utils.SkinFileUtils;
  * @usage null
  */
 @Skinable
-@RouterAnno(hostAndPath = "module_theme/theme/ThemeDetailActivity")
+@RouterAnno(hostAndPath = RouterHub.SKIN_SkinDetailActivity)
 public class ThemeDetailActivity extends BaseToolbarActivity {
 
     @AttrValueAutowiredAnno("skinInfo")
