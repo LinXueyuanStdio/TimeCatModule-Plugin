@@ -17,11 +17,6 @@ import java.io.File
  *           - plugin-manager.apk
  *         - 1.0.1
  *           - plugin-manager.apk
- *       - plugin
- *         - 1.0.0
- *           - plugin-release.zip
- *         - 1.0.1
- *           - plugin-release.zip
  * @usage null
  */
 object PluginDir {

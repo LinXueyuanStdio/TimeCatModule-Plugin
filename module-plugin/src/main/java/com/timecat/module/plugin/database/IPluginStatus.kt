@@ -21,8 +21,8 @@ interface IPluginStatus : IStatus {
 
     override fun statusDescription(): String {
         val stringBuilder = StringBuilder()
-        stringBuilder.append(if (canPluginEnter()) "主页面 " else "")
-        stringBuilder.append(if (canRecordApi()) "块浏览器 " else "")
+        stringBuilder.append(if (canPluginEnter()) "插件主页面 " else "")
+        stringBuilder.append(if (canRecordApi()) "符文体系 " else "")
         return stringBuilder.toString()
     }
 }

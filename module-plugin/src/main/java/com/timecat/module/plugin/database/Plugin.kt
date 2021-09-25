@@ -25,7 +25,13 @@ import java.io.Serializable
 data class Plugin(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
+    /**
+     * 唯一id，一般是包名
+     */
     var uuid: String,
+    /**
+     * 实现类型
+     */
     var type: Long = TYPE_PluginEnter,
     var title: String,
 

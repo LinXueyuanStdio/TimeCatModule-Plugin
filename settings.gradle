@@ -3,6 +3,9 @@ rootProject.name = "TimeCatModule-Plugin"
 apply from: "context.gradle"
 
 include ':app'
+
+include ':module-skin'
+
 include ':module-plugin'
 include ':shared-host'
 

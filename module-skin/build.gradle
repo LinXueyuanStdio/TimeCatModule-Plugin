@@ -1,0 +1,19 @@
+apply from: "${project.rootDir}/gradle/module_header.gradle"
+
+android {
+    resourcePrefix "t_" //给 Module 内的资源名增加前缀, 避免资源名冲突
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api rootProject.ext.timecat["component-CommonBase"]
+    api rootProject.ext.timecat["component-CommonUI"]
+
+    api rootProject.ext.timecat["component-SelfRouter"]
+    api rootProject.ext.timecat["component-CommonStatic"]
+}
+
+apply from: "${project.rootDir}/gradle/module_tail.gradle"

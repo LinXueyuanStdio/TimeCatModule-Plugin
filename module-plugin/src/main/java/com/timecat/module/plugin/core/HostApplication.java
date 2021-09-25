@@ -47,8 +47,7 @@ public class HostApplication {
 
     private static boolean isProcess(Context context, String processName) {
         String currentProcName = "";
-        ActivityManager manager =
-                (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
             if (processInfo.pid == myPid()) {
                 currentProcName = processInfo.processName;

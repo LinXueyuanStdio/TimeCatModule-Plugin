@@ -1,0 +1,1335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bottom_sheet_controll_bar" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/selectThemeToggleGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/lightThemeButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/light_theme"
+            app:icon="@drawable/ic_light" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/darkThemeButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dark_theme"
+            app:icon="@drawable/ic_night" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorPrimary"
+                app:title="colorPrimary" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorPrimaryVariant"
+                app:title="colorPrimaryVariant" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorSecondary"
+                app:title="colorSecondary" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorSecondaryVariant"
+                app:title="colorSecondaryVariant" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?android:attr/colorBackground"
+                app:title="colorBackground" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorError"
+                app:title="colorError" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorSurface"
+                app:title="colorSurface" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorOnPrimary"
+                app:title="colorOnPrimary" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorOnSecondary"
+                app:title="colorOnSecondary" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorOnBackground"
+                app:title="colorOnBackground" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorOnError"
+                app:title="colorOnError" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?android:textColorPrimary"
+                app:title="android:textColorPrimary" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?android:textColorSecondary"
+                app:title="android:textColorSecondary" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?android:textColorTertiary"
+                app:title="android:textColorTertiary" />
+
+            <com.timecat.module.skin.info.ColorInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemColor="?attr/colorOnSurface"
+                app:title="colorOnSurface" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:shapeAppearanceOverlay="?attr/shapeAppearanceSmallComponent"
+                app:strokeColor="#DEDEDE"
+                app:strokeWidth="1dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="16dp"
+                    android:text="Small shape"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="?attr/colorOnSurface" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:shapeAppearanceOverlay="?attr/shapeAppearanceMediumComponent"
+                app:strokeColor="#DEDEDE"
+                app:strokeWidth="1dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="16dp"
+                    android:text="Medium shape"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="?attr/colorOnSurface" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:shapeAppearanceOverlay="?attr/shapeAppearanceLargeComponent"
+                app:strokeColor="#DEDEDE"
+                app:strokeWidth="1dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="16dp"
+                    android:text="Large shape"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="?attr/colorOnSurface" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/primaryToolbar"
+                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:navigationIcon="?attr/homeAsUpIndicator"
+                    app:title="Primary" />
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/surfaceToolbar"
+                    style="@style/Widget.MaterialComponents.Toolbar.Surface"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/primaryToolbar"
+                    app:navigationIcon="?attr/homeAsUpIndicator"
+                    app:title="Surface" />
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/primarySurfaceToolbar"
+                    style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/surfaceToolbar"
+                    app:navigationIcon="?attr/homeAsUpIndicator"
+                    app:title="PrimarySurface" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/filledBoxInputTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="FilledBox"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filledBoxInputTextView">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Hint"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/customIconFilledTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:endIconDrawable="@drawable/ic_android"
+                    app:endIconMode="custom"
+                    app:helperText="Custom start and end icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filledTextInputLayout"
+                    app:startIconDrawable="@drawable/ic_search">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Hint"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dropdownFilledTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/customIconFilledTextInputLayout">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/filledAutoCompleteTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledPasswordTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="16"
+                    app:helperText="Helper"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dropdownFilledTextInputLayout"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:maxLength="16"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledErrorTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filledPasswordTextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Hint"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/outlineBoxInputTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="OutlineBox"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filledErrorTextInputLayout" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlineTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/outlineBoxInputTextView">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Hint"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/customIconOutlineTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:endIconDrawable="@drawable/ic_android"
+                    app:endIconMode="custom"
+                    app:helperText="Custom start and end icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/outlineTextInputLayout"
+                    app:startIconDrawable="@drawable/ic_search">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Hint"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dropdownOutlineTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/customIconOutlineTextInputLayout">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/outlineAutoCompleteTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinePasswordTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="16"
+                    app:helperText="Helper"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dropdownOutlineTextInputLayout"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:maxLength="16"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlineErrorTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/outlinePasswordTextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Hint"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/enableSwitch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Enable"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:switchPadding="8dp"
+                    app:useMaterialThemeColors="true" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/disableCheckedSwitch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:checked="true"
+                    android:enabled="false"
+                    android:text="Disable"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/enableSwitch"
+                    app:switchPadding="8dp"
+                    app:useMaterialThemeColors="true" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/disableNonCheckedCheckBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:enabled="false"
+                    android:text="Disable"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/disableCheckedSwitch"
+                    app:switchPadding="8dp"
+                    app:useMaterialThemeColors="true" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/defaultSliderTitleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="From 0 to 100"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/defaultSlider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:value="10"
+                    android:valueFrom="0.0"
+                    android:valueTo="100.0"
+                    app:layout_constraintEnd_toStartOf="@id/defaultSliderValueText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/defaultSliderTitleText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/defaultSliderValueText"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintBottom_toBottomOf="@id/defaultSlider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/defaultSlider"
+                    app:layout_constraintTop_toTopOf="@id/defaultSlider" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/discreteSliderTitleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="From 0 to 100 step 10"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/defaultSlider" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/discreteSlider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:stepSize="10"
+                    android:value="10"
+                    android:valueFrom="0.0"
+                    android:valueTo="100.0"
+                    app:layout_constraintEnd_toStartOf="@id/discreteSliderValueText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/discreteSliderTitleText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/discreteSliderValueText"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintBottom_toBottomOf="@id/discreteSlider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/discreteSlider"
+                    app:layout_constraintTop_toTopOf="@id/discreteSlider" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/labelFormatterSliderTitleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="From 1000 to 10000 step 100\nWith label formatter"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/discreteSlider" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/labelFormatterSlider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:stepSize="100"
+                    android:value="2000.0"
+                    android:valueFrom="1000.0"
+                    android:valueTo="10000.0"
+                    app:layout_constraintEnd_toStartOf="@id/labelFormatterSliderValueText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelFormatterSliderTitleText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/labelFormatterSliderValueText"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintBottom_toBottomOf="@id/labelFormatterSlider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/labelFormatterSlider"
+                    app:layout_constraintTop_toTopOf="@id/labelFormatterSlider" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <RadioGroup
+                    android:id="@+id/enableRadioGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:checkedButton="@id/radioButton1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/radioButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Radio Button 1"
+                        app:useMaterialThemeColors="true" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Radio Button 2"
+                        app:useMaterialThemeColors="true" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Radio Button 3"
+                        app:useMaterialThemeColors="true" />
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/disableRadioGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:checkedButton="@id/disableRadioButton1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/enableRadioGroup">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/disableRadioButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="Radio Button 1"
+                        app:useMaterialThemeColors="true" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/disableRadioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="Radio Button 2"
+                        app:useMaterialThemeColors="true" />
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/progressTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="ProgressBar"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/progressTextView" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/horizontalProgressTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="ProgressBar (Horizontal)"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+                <ProgressBar
+                    android:id="@+id/horizontalProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:indeterminate="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontalProgressTextView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/singleSelectTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Single Select"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/singleSelectToggleGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/singleSelectTextView"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select1" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select2" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select3" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/multiSelectTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Multi Select"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/singleSelectToggleGroup" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/multiSelectToggleGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/multiSelectTextView"
+                    app:singleSelection="false">
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select1" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select2" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select3" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/verticalTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Vertical"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/multiSelectToggleGroup" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/verticalToggleGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/verticalTextView"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="@dimen/mtrl_min_touch_target_size"
+                        app:icon="@drawable/ic_android"
+                        app:iconPadding="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="@dimen/mtrl_min_touch_target_size"
+                        app:icon="@drawable/ic_android"
+                        app:iconPadding="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="@dimen/mtrl_min_touch_target_size"
+                        app:icon="@drawable/ic_android"
+                        app:iconPadding="0dp" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/raisedButtonTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Raised Button"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/raisedButton"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/raisedButtonTextView" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/disableRaisedButton"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:enabled="false"
+                    android:text="Button"
+                    app:layout_constraintStart_toEndOf="@+id/raisedButton"
+                    app:layout_constraintTop_toTopOf="@+id/raisedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/iconRaisedButton"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Button"
+                    app:icon="@drawable/ic_add"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/raisedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/disableIconRaisedButton"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:enabled="false"
+                    android:text="Button"
+                    app:icon="@drawable/ic_add"
+                    app:layout_constraintStart_toEndOf="@+id/iconRaisedButton"
+                    app:layout_constraintTop_toTopOf="@+id/iconRaisedButton" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/unelevatedButtonTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Unelevated Button"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iconRaisedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/unelevatedButton"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/unelevatedButtonTextView" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/disableUnelevatedButton"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:enabled="false"
+                    android:text="Button"
+                    app:layout_constraintStart_toEndOf="@+id/unelevatedButton"
+                    app:layout_constraintTop_toTopOf="@+id/unelevatedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/iconUnelevatedButton"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Button"
+                    app:icon="@drawable/ic_add"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/unelevatedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/disabelIconUnelevatedButton"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:enabled="false"
+                    android:text="Button"
+                    app:icon="@drawable/ic_add"
+                    app:layout_constraintStart_toEndOf="@+id/iconUnelevatedButton"
+                    app:layout_constraintTop_toTopOf="@+id/iconUnelevatedButton" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/outlinedButtonTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Outlined Button"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iconUnelevatedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/outlinedButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/outlinedButtonTextView" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/disableOutlinedButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:enabled="false"
+                    android:text="Button"
+                    app:layout_constraintStart_toEndOf="@+id/outlinedButton"
+                    app:layout_constraintTop_toTopOf="@+id/outlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/iconOutlinedButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Button"
+                    app:icon="@drawable/ic_add"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/outlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/disabelIconOutlinedButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:enabled="false"
+                    android:text="Button"
+                    app:icon="@drawable/ic_add"
+                    app:layout_constraintStart_toEndOf="@+id/iconOutlinedButton"
+                    app:layout_constraintTop_toTopOf="@+id/iconOutlinedButton" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textButtonTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Text Button"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iconOutlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/textButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textButtonTextView" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/disableTextButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:enabled="false"
+                    android:text="Button"
+                    app:layout_constraintStart_toEndOf="@+id/textButton"
+                    app:layout_constraintTop_toTopOf="@+id/textButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/iconTextButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Button"
+                    app:icon="@drawable/ic_add"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/disabelIconTextButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:enabled="false"
+                    android:text="Button"
+                    app:icon="@drawable/ic_add"
+                    app:layout_constraintStart_toEndOf="@+id/iconTextButton"
+                    app:layout_constraintTop_toTopOf="@+id/iconTextButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/chipStyleTitleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Chips"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/entryChip"
+                    style="@style/Widget.MaterialComponents.Chip.Entry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Entry"
+                    app:chipIcon="@drawable/ic_android"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/chipStyleTitleText" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/filterChip"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Filter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/entryChip" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/choiceChip"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Choice"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/filterChip" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/actionChip"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Action"
+                    app:chipIcon="@drawable/ic_android"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/choiceChip" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/singleChoiceChipTitleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Single Choice"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/actionChip" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/singleChoiceChipGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/singleChoiceChipTitleText"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 1" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 2" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 3" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 4" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 5" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 6" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 7" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/multiChoiceChipTitleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Multi Choice"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/singleChoiceChipGroup" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/mutliChoiceChipGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/multiChoiceChipTitleText"
+                    app:singleSelection="false">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 1" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 2" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 3" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 4" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 5" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 6" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chip 7" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.timecat.module.skin">
+
+    <application>
+        <activity android:name=".ThemeActivity"/>
+        <activity android:name=".ThemeDetailActivity"/>
+        <activity android:name=".DesignMySkinActivity" />
+
+        <meta-data
+            android:name="com.timecat.module.skin.base.GlobalConfiguration"
+            android:value="ConfigModule"/>
+    </application>
+
+</manifest>

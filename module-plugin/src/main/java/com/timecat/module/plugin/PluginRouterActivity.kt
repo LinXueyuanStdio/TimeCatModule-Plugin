@@ -29,6 +29,10 @@ import kotlinx.coroutines.Dispatchers
 class PluginRouterActivity : Activity() {
     @AttrValueAutowiredAnno("plugin")
     var plugin: Plugin? = null
+    @AttrValueAutowiredAnno(PluginHub.KEY_PLUGIN_PART_KEY)
+    var partKey: String? = null
+    @AttrValueAutowiredAnno(PluginHub.KEY_CLASSNAME)
+    var className: String? = null
 
     private lateinit var mViewGroup: ViewGroup
 
@@ -48,8 +52,8 @@ class PluginRouterActivity : Activity() {
 
     private fun startPlugin(plugin: Plugin) {
         val bundle = Bundle()
-        bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, intent.getStringExtra(PluginHub.KEY_PLUGIN_PART_KEY))
-        bundle.putString(PluginHub.KEY_CLASSNAME, intent.getStringExtra(PluginHub.KEY_CLASSNAME))
+        bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, partKey)
+        bundle.putString(PluginHub.KEY_CLASSNAME, className)
 
         val pluginManager = Shadow.getPluginManager(this, plugin)
         pluginManager.enter(this@PluginRouterActivity, PluginHub.FROM_ID_START_ACTIVITY, bundle, object : EnterCallback {
