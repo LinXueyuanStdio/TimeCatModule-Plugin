@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.zpj.downloader.constant.Error;
 import com.zpj.downloader.constant.ErrorCode;
-import com.zpj.utils.FileUtils;
 
 import java.io.File;
 import java.net.HttpURLConnection;

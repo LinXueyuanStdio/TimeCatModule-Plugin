@@ -1,9 +1,9 @@
 package com.zpj.downloader.impl;
 
 import com.zpj.downloader.BaseMission;
+import com.zpj.downloader.FileUtils;
 import com.zpj.downloader.MissionSerializer;
 import com.zpj.downloader.utils.io.UnsafeObjectInputStream;
-import com.zpj.utils.FileUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

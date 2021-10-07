@@ -12,8 +12,6 @@ import android.webkit.MimeTypeMap;
 
 import com.zpj.downloader.constant.Error;
 import com.zpj.downloader.utils.ExecutorUtils;
-import com.zpj.utils.FileUtils;
-import com.zpj.utils.FormatUtils;
 
 import java.io.File;
 import java.io.Serializable;
@@ -442,28 +440,6 @@ public class BaseMission<T extends BaseMission<T>> extends BaseConfig<T> impleme
             writeMissionInfo();
         }
         return success;
-    }
-
-    public boolean openFile(Context context) {
-        File file = getFile();
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(context, FileUtils.getFileProviderName(context), file);
-
-            context.grantUriPermission(context.getPackageName(), contentUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.setDataAndType(contentUri, FileUtils.getMIMEType(file));
-        } else {
-            Uri uri = Uri.fromFile(file);
-            intent.setDataAndType(uri, FileUtils.getMIMEType(file));
-        }
-        context.startActivity(intent);
-        return true;
-    }
-
-    public boolean openFile() {
-        return openFile(getContext());
     }
 
     //------------------------------------------------------------notify------------------------------------------------------------
