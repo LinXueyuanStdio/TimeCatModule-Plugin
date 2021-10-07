@@ -13,12 +13,16 @@ import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.layout.ui.utils.ColorUtils
 import com.timecat.middle.block.ext.bindSelected
+import com.timecat.middle.block.ext.launch
 import com.timecat.module.plugin.R
 import com.timecat.module.plugin.database.Plugin
+import com.timecat.module.plugin.database.PluginDatabase
+import com.timecat.module.plugin.database.TYPE_PluginEnter
 import com.zpj.downloader.BaseMission
 import com.zpj.downloader.ZDownloader
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
+import kotlinx.coroutines.Dispatchers
 import org.joda.time.DateTime
 import java.io.Serializable
 
@@ -39,11 +43,11 @@ class CloudPluginItem(
      * 下载对象
      * 生命周期比列表项长
      */
-    val mission: BaseMission<*>? = null,
+    var mission: BaseMission<*>? = null,
     /**
      * 本地插件对象
      */
-    val plugin: Plugin? = null,
+    var plugin: Plugin? = null,
 ) : BaseItem<PluginCardVH>(block.objectId) {
 
     override fun getLayoutRes(): Int = R.layout.plugin_item_cloud_plugin
@@ -66,25 +70,28 @@ class CloudPluginItem(
         holder.avatar.bindSelected(adapter.isSelected(adapter.getGlobalPositionOf(this)), head.header.avatar, ColorUtils.randomColor())
         val head2 = PluginApp.fromJson(head.structure)
         if (plugin != null) {
-            val stateText = "管理器：${plugin.managerVersionName}(${plugin.managerVersionCode})"
+            val stateText = "管理器：${plugin?.managerVersionName}(${plugin?.managerVersionCode})"
             holder.state.text = stateText
         } else {
             val info = head2.updateInfo
             if (info.isNotEmpty()) {
                 val newest = info.first()
-                val stateText = "${newest.version_name}(${newest.version_code})    ${newest.size}    更新时间${DateTime(newest.lastUpdateTime)}"
+                val stateText = "${newest.version_name}(${newest.version_code})    ${newest.size}\n" +
+                    "更新时间${DateTime(newest.lastUpdateTime)}"
                 holder.state.text = stateText
             }
         }
         if (missionHolder == null) {
-            missionHolder = MissionHolder(holder, mission) {
+            missionHolder = MissionHolder(holder, mission, {
+                save()
+            }) {
                 run()
             }
         }
         holder.stateBtn.setShakelessClickListener {
             //升级
             if (plugin == null) {
-                ZDownloader.download(head.url)
+                download(head.url, holder)
             } else {
                 run()
             }
@@ -92,6 +99,30 @@ class CloudPluginItem(
         holder.root.setShakelessClickListener {
             NAV.go(RouterHub.APP_DETAIL_AppDetailActivity, "blockId", block.objectId)
         }
+    }
+
+    fun save() {
+        context.launch(Dispatchers.IO) {
+            val head = AppBlock.fromJson(block.structure)
+            val head2 = PluginApp.fromJson(head.structure)
+            val info = head2.updateInfo.firstOrNull()
+            val versionCode = info?.version_code ?: 1
+            val versionName = info?.version_name ?: "1.0.0"
+            val newPlugin = Plugin(0, block.objectId, TYPE_PluginEnter, block.title, versionCode, versionName)
+            PluginDatabase.forFile(context).pluginDao().insert(newPlugin)
+            plugin = newPlugin
+        }
+    }
+
+    fun download(url: String, holder: PluginCardVH) {
+        missionHolder?.detach()
+        mission = ZDownloader.download(url)
+        missionHolder = MissionHolder(holder, mission, {
+            save()
+        }) {
+            run()
+        }
+        missionHolder?.start()
     }
 
     fun run() {

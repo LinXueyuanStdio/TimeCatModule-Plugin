@@ -3,6 +3,7 @@ package com.timecat.module.plugin.adapter
 import com.timecat.component.commonsdk.extension.beGone
 import com.timecat.component.commonsdk.extension.beVisible
 import com.timecat.layout.ui.layout.setShakelessClickListener
+import com.timecat.module.plugin.database.PluginDatabase
 import com.zpj.downloader.BaseMission
 import com.zpj.downloader.constant.Error
 import kotlin.math.roundToInt
@@ -17,10 +18,15 @@ import kotlin.math.roundToInt
 class MissionHolder(
     val holder: PluginCardVH,
     var mission: BaseMission<*>? = null,
+    val onSave: () -> Unit,
     val onRun: () -> Unit,
 ) : BaseMission.MissionListener {
     init {
         mission?.addListener(this)
+    }
+
+    fun start() {
+        mission?.start()
     }
 
     fun detach() {
@@ -63,6 +69,7 @@ class MissionHolder(
     }
 
     override fun onFinish() {
+        onSave()
         holder.progress_bar.beGone()
         holder.stateBtn.text = "打开"
         holder.stateBtn.setShakelessClickListener {
