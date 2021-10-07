@@ -2,6 +2,7 @@ package com.timecat.module.plugin.adapter
 
 import com.timecat.component.commonsdk.extension.beGone
 import com.timecat.component.commonsdk.extension.beVisible
+import com.timecat.element.alert.ToastUtil
 import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.module.plugin.database.PluginDatabase
 import com.zpj.downloader.BaseMission
@@ -27,6 +28,7 @@ class MissionHolder(
 
     fun start() {
         mission?.start()
+        ToastUtil.w_long("正在下载到 ${mission?.getMissionInfoFilePath()}")
     }
 
     fun detach() {

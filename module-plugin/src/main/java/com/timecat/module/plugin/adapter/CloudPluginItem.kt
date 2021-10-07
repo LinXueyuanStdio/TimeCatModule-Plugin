@@ -103,20 +103,26 @@ class CloudPluginItem(
 
     fun save() {
         context.launch(Dispatchers.IO) {
-            val head = AppBlock.fromJson(block.structure)
-            val head2 = PluginApp.fromJson(head.structure)
-            val info = head2.updateInfo.firstOrNull()
-            val versionCode = info?.version_code ?: 1
-            val versionName = info?.version_name ?: "1.0.0"
-            val newPlugin = Plugin(0, block.objectId, TYPE_PluginEnter, block.title, versionCode, versionName)
+            val newPlugin = block.toPlugin()
             PluginDatabase.forFile(context).pluginDao().insert(newPlugin)
             plugin = newPlugin
         }
     }
 
+    fun Block.toPlugin(): Plugin {
+        val head = AppBlock.fromJson(structure)
+        val head2 = PluginApp.fromJson(head.structure)
+        val info = head2.updateInfo.firstOrNull()
+        val versionCode = info?.version_code ?: 1
+        val versionName = info?.version_name ?: "1.0.0"
+        val newPlugin = Plugin(0, objectId, TYPE_PluginEnter, title, versionCode, versionName)
+        return newPlugin
+    }
+
     fun download(url: String, holder: PluginCardVH) {
         missionHolder?.detach()
-        mission = ZDownloader.download(url)
+        val newPlugin = block.toPlugin()
+        mission = ZDownloader.download(url).setDownloadPath(newPlugin.managerApkFile(context).absolutePath)
         missionHolder = MissionHolder(holder, mission, {
             save()
         }) {
