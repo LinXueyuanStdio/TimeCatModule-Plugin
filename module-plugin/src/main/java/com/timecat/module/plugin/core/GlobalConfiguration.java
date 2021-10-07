@@ -25,6 +25,7 @@ import com.jess.arms.integration.ConfigModule;
 import java.util.List;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 
 /**
@@ -45,12 +46,12 @@ import androidx.fragment.app.FragmentManager;
 public final class GlobalConfiguration implements ConfigModule {
 
     @Override
-    public void applyOptions(Context context, GlobalConfigModule.Builder builder) {
+    public void applyOptions(@NonNull Context context, @NonNull GlobalConfigModule.Builder builder) {
 
     }
 
     @Override
-    public void injectAppLifecycle(Context context, List<AppLifecycles> lifecycles) {
+    public void injectAppLifecycle(@NonNull Context context, @NonNull List<AppLifecycles> lifecycles) {
         // AppLifecycles 的所有方法都会在基类 Application 的对应的生命周期中被调用,所以在对应的方法中可以扩展一些自己需要的逻辑
         // 可以根据不同的逻辑添加多个实现类
 
@@ -58,12 +59,12 @@ public final class GlobalConfiguration implements ConfigModule {
     }
 
     @Override
-    public void injectActivityLifecycle(Context context, List<Application.ActivityLifecycleCallbacks> lifecycles) {
+    public void injectActivityLifecycle(@NonNull Context context, @NonNull List<Application.ActivityLifecycleCallbacks> lifecycles) {
 
     }
 
     @Override
-    public void injectFragmentLifecycle(Context context, List<FragmentManager.FragmentLifecycleCallbacks> lifecycles) {
+    public void injectFragmentLifecycle(@NonNull Context context, @NonNull List<FragmentManager.FragmentLifecycleCallbacks> lifecycles) {
 
     }
 

@@ -18,6 +18,7 @@ import com.timecat.module.plugin.R
 import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.module.plugin.database.TYPE_PluginEnter
+import com.timecat.module.plugin.download.DownloadNotificationInterceptor
 import com.zpj.downloader.BaseMission
 import com.zpj.downloader.ZDownloader
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -122,7 +123,9 @@ class CloudPluginItem(
     fun download(url: String, holder: PluginCardVH) {
         missionHolder?.detach()
         val newPlugin = block.toPlugin()
-        mission = ZDownloader.download(url).setDownloadPath(newPlugin.managerApkFile(context).absolutePath)
+        mission = ZDownloader.download(url)
+            .setDownloadPath(newPlugin.managerApkFile(context).absolutePath)
+            .setNotificationInterceptor(DownloadNotificationInterceptor())
         missionHolder = MissionHolder(holder, mission, {
             save()
         }) {
