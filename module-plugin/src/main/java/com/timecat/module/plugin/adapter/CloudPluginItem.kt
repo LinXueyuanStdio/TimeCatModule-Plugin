@@ -17,6 +17,7 @@ import com.timecat.middle.block.ext.launch
 import com.timecat.module.plugin.R
 import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.database.PluginDatabase
+import com.timecat.module.plugin.database.PluginDir
 import com.timecat.module.plugin.database.TYPE_PluginEnter
 import com.timecat.module.plugin.download.DownloadNotificationInterceptor
 import com.zpj.downloader.BaseMission
@@ -123,8 +124,8 @@ class CloudPluginItem(
     fun download(url: String, holder: PluginCardVH) {
         missionHolder?.detach()
         val newPlugin = block.toPlugin()
-        mission = ZDownloader.download(url)
-            .setDownloadPath(newPlugin.managerApkFile(context).absolutePath)
+        mission = ZDownloader.download(url, PluginDir.sPluginManagerName)
+            .setDownloadPath(newPlugin.managerApkFile(context).parent)
             .setNotificationInterceptor(DownloadNotificationInterceptor())
         missionHolder = MissionHolder(holder, mission, {
             save()
