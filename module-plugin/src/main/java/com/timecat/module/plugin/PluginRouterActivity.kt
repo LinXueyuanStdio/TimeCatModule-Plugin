@@ -56,20 +56,26 @@ class PluginRouterActivity : Activity() {
         bundle.putString(PluginHub.KEY_CLASSNAME, className)
 
         val pluginManager = Shadow.getPluginManager(this, plugin)
-        pluginManager.enter(this@PluginRouterActivity, PluginHub.FROM_ID_START_ACTIVITY, bundle, object : EnterCallback {
-            override fun onShowLoadingView(view: View) {
-                runOnUiThread {
-                    mViewGroup.addView(view)
-                }
-            }
+        if (className == null) {
+            pluginManager.enter(this, -1, bundle, enterCallback)
+        } else {
+            pluginManager.enter(this, PluginHub.FROM_ID_START_ACTIVITY, bundle, enterCallback)
+        }
+    }
 
-            override fun onCloseLoadingView() {
-                finish()
+    val enterCallback :EnterCallback = object : EnterCallback {
+        override fun onShowLoadingView(view: View) {
+            runOnUiThread {
+                mViewGroup.addView(view)
             }
+        }
 
-            override fun onEnterComplete() {
-            }
-        })
+        override fun onCloseLoadingView() {
+            finish()
+        }
+
+        override fun onEnterComplete() {
+        }
     }
 
     override fun onDestroy() {
