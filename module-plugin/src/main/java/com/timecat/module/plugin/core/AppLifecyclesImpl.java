@@ -51,7 +51,7 @@ public class AppLifecyclesImpl implements AppLifecycles {
                    .setDownloadPath(DownloadConfigKt.getDownloadPath())
                    .setConcurrentMissionCount(DownloadConfigKt.getMaxDownloadConcurrentCount())
                    .setEnableNotification(DownloadConfigKt.getShowDownloadNotification())
-                   .setProducerThreadCount(DownloadConfigKt.getMaxDownloadThreadCount())
+                   .setThreadCount(DownloadConfigKt.getMaxDownloadThreadCount())
                    .init();
     }
 

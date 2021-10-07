@@ -7,6 +7,7 @@ import com.timecat.element.alert.ToastUtil
 import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.module.plugin.database.PluginDatabase
 import com.zpj.downloader.BaseMission
+import com.zpj.downloader.ProgressUpdater
 import com.zpj.downloader.constant.Error
 import kotlin.math.roundToInt
 
@@ -38,7 +39,7 @@ class MissionHolder(
     }
 
     //region BaseMission.MissionListener
-    override fun onInit() {
+    override fun onPrepare() {
     }
 
     override fun onStart() {
@@ -49,7 +50,7 @@ class MissionHolder(
         }
     }
 
-    override fun onPause() {
+    override fun onPaused() {
         holder.stateBtn.text = "暂停"
         holder.stateBtn.setShakelessClickListener {
             mission?.restart()
@@ -61,18 +62,18 @@ class MissionHolder(
         holder.stateBtn.setOnClickListener(null)
     }
 
-    override fun onRetry() {
+    override fun onRetrying() {
         holder.stateBtn.text = "下载中"
         holder.stateBtn.setShakelessClickListener {
             mission?.pause()
         }
     }
 
-    override fun onProgress(update: BaseMission.ProgressInfo) {
+    override fun onProgress(update: ProgressUpdater) {
         holder.progress_bar.progress = update.progress.roundToInt()
     }
 
-    override fun onFinish() {
+    override fun onFinished() {
         onSave()
         holder.progress_bar.beGone()
         holder.stateBtn.text = "打开"

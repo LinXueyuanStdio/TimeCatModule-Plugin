@@ -39,7 +39,7 @@ dependencies {
     api "com.tencent.shadow.dynamic:host:$shadow_version"
 
     kapt rootProject.ext.androidx_lib["androidx.room:compiler"]
-    api 'com.github.Z-P-J:ZDownloader:1.0.0'
+    api 'com.timecat.module:download:1.0.0'
 }
 
 apply from: "${project.rootDir}/gradle/module_tail.gradle"
