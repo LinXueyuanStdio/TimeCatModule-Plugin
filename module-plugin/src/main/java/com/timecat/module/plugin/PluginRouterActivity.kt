@@ -2,16 +2,12 @@ package com.timecat.module.plugin
 
 import android.app.Activity
 import android.os.Bundle
-import android.os.Handler
-import android.view.View
-import android.view.ViewGroup
-import com.tencent.shadow.dynamic.host.EnterCallback
 import com.timecat.component.router.app.NAV
 import com.timecat.identity.readonly.PluginHub
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.middle.block.ext.launch
 import com.timecat.module.plugin.database.Plugin
-import com.timecat.module.plugin.host.Shadow
+import com.timecat.module.plugin.ext.startPlugin
 import com.xiaojinzi.component.anno.AttrValueAutowiredAnno
 import com.xiaojinzi.component.anno.RouterAnno
 import kotlinx.coroutines.Dispatchers
@@ -29,18 +25,17 @@ import kotlinx.coroutines.Dispatchers
 class PluginRouterActivity : Activity() {
     @AttrValueAutowiredAnno("plugin")
     var plugin: Plugin? = null
+
     @AttrValueAutowiredAnno(PluginHub.KEY_PLUGIN_PART_KEY)
     var partKey: String? = null
+
     @AttrValueAutowiredAnno(PluginHub.KEY_CLASSNAME)
     var className: String? = null
-
-    private lateinit var mViewGroup: ViewGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         NAV.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.plugin_activity_router)
-        mViewGroup = findViewById(R.id.container)
         if (plugin == null) {
             finish()
         } else {
@@ -48,39 +43,5 @@ class PluginRouterActivity : Activity() {
                 startPlugin(plugin!!)
             }
         }
-    }
-
-    private fun startPlugin(plugin: Plugin) {
-        val bundle = Bundle()
-//        bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, partKey)
-//        bundle.putString(PluginHub.KEY_CLASSNAME, className)
-        bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, "plugin-shadow-app")
-        bundle.putString(PluginHub.KEY_CLASSNAME, "io.legado.app.ui.welcome.WelcomeActivity")
-        val pluginManager = Shadow.getPluginManager(this, plugin)
-//        if (className == null) {
-//            pluginManager.enter(this, -1, bundle, enterCallback)
-//        } else {
-//        }
-            pluginManager.enter(this, PluginHub.FROM_ID_START_ACTIVITY, bundle, enterCallback)
-    }
-
-    val enterCallback :EnterCallback = object : EnterCallback {
-        override fun onShowLoadingView(view: View) {
-            runOnUiThread {
-                mViewGroup.addView(view)
-            }
-        }
-
-        override fun onCloseLoadingView() {
-            finish()
-        }
-
-        override fun onEnterComplete() {
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mViewGroup.removeAllViews()
     }
 }

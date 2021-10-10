@@ -50,7 +50,8 @@ import io.reactivex.schedulers.Schedulers;
  * @usage null
  */
 @RouterAnno(hostAndPath = RouterHub.SKIN_SkinActivity)
-public class SkinActivity extends BaseRefreshListActivity  {
+public class
+SkinActivity extends BaseRefreshListActivity  {
     ThemeAdapter<Shelf> themeAdapter;
 
     @Override

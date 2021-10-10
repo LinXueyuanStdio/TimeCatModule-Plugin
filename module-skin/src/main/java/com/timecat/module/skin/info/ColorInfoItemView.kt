@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.withStyledAttributes
 import com.google.android.material.card.MaterialCardView
 import com.timecat.module.skin.R
+import java.util.*
 
 class ColorInfoItemView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
     private val titleTextView: AppCompatTextView by lazy { findViewById(R.id.titleTextView) }
@@ -31,7 +32,7 @@ class ColorInfoItemView @JvmOverloads constructor(context: Context, attrs: Attri
     fun setItemColor(color: Int) {
         cardView.setCardBackgroundColor(color)
         colorTextView.apply {
-            text = Integer.toHexString(color).toUpperCase()
+            text = Integer.toHexString(color).uppercase(Locale.getDefault())
             setTextColor(color.adjustTextColor())
         }
     }
