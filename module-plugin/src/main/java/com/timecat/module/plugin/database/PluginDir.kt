@@ -56,7 +56,7 @@ object PluginDir {
     fun managerApkFile(context: Context, plugin: Plugin): File {
         return File(
             getPluginDir(context),
-            "${plugin.uuid}/${PLUGIN_MANAGER_PATH}/${plugin.managerVersionName}/${sPluginManagerName}"
+            "${plugin.packageName}/${PLUGIN_MANAGER_PATH}/${plugin.managerVersionName}/${sPluginManagerName}"
         )
     }
 

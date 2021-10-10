@@ -26,9 +26,13 @@ data class Plugin(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
     /**
-     * 唯一id，一般是包名
+     * 唯一id，和云端Block一一对应
      */
     var uuid: String,
+    /**
+     * 包名
+     */
+    var packageName: String,
     /**
      * 实现类型
      */

@@ -34,18 +34,14 @@ class PluginCloudActivity : BaseRefreshListActivity() {
     var dispose: Disposable? = null
     override fun onRefresh() {
         mRefreshLayout.isRefreshing = true
-        mStatefulLayout?.showLoading()
+        mStatefulLayout?.showLoading("加载中，请耐心等待...")
         dispose?.dispose()
         dispose = requestBlock {
             query = allPluginApp()
             onSuccess = { blocks ->
                 lifecycleScope.launch(Dispatchers.IO) {
                     val missions = ZDownloader.getAllMissions()
-                    val pluginUuids = blocks.map {
-                        val head = AppBlock.fromJson(it.structure)
-                        val head2 = PluginApp.fromJson(head.structure)
-                        head2.packageName
-                    }
+                    val pluginUuids = blocks.map { it.objectId }
                     val allPlugin = PluginDatabase.forFile(context).pluginDao().getAll(pluginUuids)
                     val items = blocks.map { block ->
                         val localPlugin = allPlugin.find { it.uuid in pluginUuids }

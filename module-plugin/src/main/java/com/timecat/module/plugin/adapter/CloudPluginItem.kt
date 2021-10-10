@@ -18,8 +18,9 @@ import com.timecat.module.plugin.R
 import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.module.plugin.database.PluginDir
-import com.timecat.module.plugin.database.TYPE_PluginEnter
 import com.timecat.module.plugin.download.DownloadNotificationInterceptor
+import com.timecat.module.plugin.ext.toPlugin
+import com.timecat.module.plugin.ext.versionCode
 import com.zpj.downloader.BaseMission
 import com.zpj.downloader.ZDownloader
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -90,12 +91,24 @@ class CloudPluginItem(
                 run()
             }
         }
-        holder.stateBtn.setShakelessClickListener {
-            //升级
-            if (plugin == null) {
-                download(head.url, holder)
+        if (plugin != null) {
+            if (block.versionCode() > plugin?.managerVersionCode ?: 1) {
+                holder.stateBtn.text = "升级"
             } else {
-                run()
+                holder.stateBtn.text = "打开"
+            }
+        } else {
+            holder.stateBtn.text = "安装"
+        }
+        holder.stateBtn.setShakelessClickListener {
+            if (plugin != null) {
+                if (block.versionCode() > plugin?.managerVersionCode ?: 1) {
+                    download(head.url, holder)
+                } else {
+                    run()
+                }
+            } else {
+                download(head.url, holder)
             }
         }
         holder.root.setShakelessClickListener {
@@ -109,16 +122,6 @@ class CloudPluginItem(
             PluginDatabase.forFile(context).pluginDao().insert(newPlugin)
             plugin = newPlugin
         }
-    }
-
-    fun Block.toPlugin(): Plugin {
-        val head = AppBlock.fromJson(structure)
-        val head2 = PluginApp.fromJson(head.structure)
-        val info = head2.updateInfo.firstOrNull()
-        val versionCode = info?.version_code ?: 1
-        val versionName = info?.version_name ?: "1.0.0"
-        val newPlugin = Plugin(0, head2.packageName, TYPE_PluginEnter, title, versionCode, versionName)
-        return newPlugin
     }
 
     fun download(url: String, holder: PluginCardVH) {

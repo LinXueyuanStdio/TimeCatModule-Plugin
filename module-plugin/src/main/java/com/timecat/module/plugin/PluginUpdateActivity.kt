@@ -6,11 +6,13 @@ import com.timecat.data.bmob.ext.bmob.requestBlock
 import com.timecat.data.bmob.ext.net.allPluginApp
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
+import com.timecat.module.plugin.adapter.CloudPluginItem
 import com.timecat.module.plugin.adapter.LocalPluginItem
 import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.page.base.friend.toolbar.BaseListActivity
 import com.xiaojinzi.component.anno.RouterAnno
+import com.zpj.downloader.ZDownloader
 import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,21 +34,10 @@ class PluginUpdateActivity : BaseListActivity() {
 
     var dispose: Disposable? = null
     override fun loadData() {
-        mStatefulLayout?.showLoading()
+        mStatefulLayout?.showLoading("检查更新中")
         lifecycleScope.launch(Dispatchers.IO) {
             val allPlugin = PluginDatabase.forFile(context).pluginDao().getAll()
-            val items = allPlugin.map { plugin ->
-                LocalPluginItem(context, plugin)
-            }
-            withContext(Dispatchers.Main) {
-                if (items.isEmpty()) {
-                    mStatefulLayout?.showEmpty()
-                } else {
-                    mStatefulLayout?.showContent()
-                    adapter.reload(items)
-                    loadCloud(allPlugin)
-                }
-            }
+            loadCloud(allPlugin)
         }
     }
 
@@ -58,11 +49,19 @@ class PluginUpdateActivity : BaseListActivity() {
             }
             onSuccess = { blocks ->
                 lifecycleScope.launch(Dispatchers.IO) {
-                    val id2Block = blocks.associate { it.objectId to it }
-                    val items = adapter.currentItems.filter { it.id in id2Block }
+                    val missions = ZDownloader.getAllMissions()
+                    val pluginUuids = blocks.map { it.objectId }
+                    val items = blocks.map { block ->
+                        val localPlugin = allPlugin.find { it.uuid in pluginUuids }
+                        val mission = missions.find { localPlugin?.managerApkFile(this@PluginUpdateActivity)?.parent == it.downloadPath }
+                        CloudPluginItem(context, block, mission, localPlugin)
+                    }
                     withContext(Dispatchers.Main) {
-                        items.forEach {
-                            adapter.updateItem(it, id2Block[it.id])
+                        if (items.isEmpty()) {
+                            mStatefulLayout?.showEmpty("您的插件全部是最新的！")
+                        } else {
+                            adapter.reload(items)
+                            mStatefulLayout?.showContent()
                         }
                     }
                 }

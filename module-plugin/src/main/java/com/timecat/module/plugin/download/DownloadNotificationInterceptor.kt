@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import com.timecat.extend.arms.BaseApplication
 import com.timecat.module.plugin.*
+import com.timecat.module.plugin.download.builder.ProgressBuilder
 import com.zpj.downloader.BaseMission
 import com.zpj.downloader.INotificationInterceptor
 
@@ -23,13 +24,15 @@ class DownloadNotificationInterceptor : INotificationInterceptor {
         ZNotify.init(context)
         buildProgressNotify(context)
             .setProgressAndFormat(progress, false, "")
-            .setContentTitle((if (isPause) "已暂停：" else "") + mission.name)
+            .setContentTitle("${if (isPause) "已暂停：" else ""}${mission.name}")
             .setContentIntent(pendingIntent)
             .setId(mission.notifyId)
             .show()
     }
 
     override fun onFinished(context: Context, mission: BaseMission<*>) {
+        ZNotify.cancel(mission.notifyId)
+
         val intent = Intent(BaseApplication.getContext(), PluginDownloadActivity::class.java)
         intent.putExtra(ACTION, ACTION_SHOW_DOWNLOAD)
         val pi: PendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -43,12 +46,14 @@ class DownloadNotificationInterceptor : INotificationInterceptor {
     }
 
     override fun onError(context: Context, mission: BaseMission<*>, errCode: Int) {
+        ZNotify.cancel(mission.notifyId)
+
         val intent = Intent(BaseApplication.getContext(), PluginDownloadActivity::class.java)
         intent.putExtra(ACTION, ACTION_SHOW_DOWNLOAD)
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         ZNotify.init(context)
         buildNotify(context)
-            .setContentTitle("下载出错" + errCode + ":" + mission.name)
+            .setContentTitle("下载出错$errCode:${mission.name}")
             .setContentIntent(pendingIntent)
             .setId(mission.notifyId)
             .show()
