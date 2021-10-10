@@ -36,7 +36,7 @@ class LocalPluginPage : BaseSelectorPage() {
 
     data class FormData(
         var file: File = Environment.getDataDirectory(),
-        var uuid: String = UUID.randomUUID().toString(),
+        var packageName: String = "",
         var type: Long = TYPE_PluginEnter,
         var title: String = "",
 
@@ -55,8 +55,8 @@ class LocalPluginPage : BaseSelectorPage() {
             val titleItem = OneLineInput("插件名", formData.title) {
                 formData.title = it ?: ""
             }
-            OneLineInput("唯一标示码", formData.uuid) {
-                formData.uuid = it ?: UUID.randomUUID().toString()
+            OneLineInput("唯一标示码", formData.packageName) {
+                formData.packageName = it ?: ""
             }
             NumberInput("版本号", "${formData.managerVersionCode}").also {
                 it.onTextChange = {
@@ -141,7 +141,7 @@ class LocalPluginPage : BaseSelectorPage() {
     open suspend fun save() {
         //TODO 将插件apk复制到目标文件夹下（由 schema 决定），再保存元数据到数据库
         val plugin = Plugin(
-            0, UUID.randomUUID().toString(),
+            0, UUID.randomUUID().toString(), formData.packageName,
             formData.type, formData.title,
             formData.managerVersionCode, formData.managerVersionName
         )
