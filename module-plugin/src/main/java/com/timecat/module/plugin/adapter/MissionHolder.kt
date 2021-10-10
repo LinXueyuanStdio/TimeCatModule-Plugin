@@ -18,7 +18,7 @@ import kotlin.math.roundToInt
  * @description null
  * @usage null
  */
-class MissionHolder(
+open class MissionHolder(
     val holder: PluginCardVH,
     var mission: BaseMission<*>? = null,
     val onSave: () -> Unit,
@@ -51,7 +51,7 @@ class MissionHolder(
     }
 
     override fun onPaused() {
-        holder.stateBtn.text = "暂停"
+        holder.stateBtn.text = "继续"
         holder.stateBtn.setShakelessClickListener {
             mission?.restart()
         }
@@ -84,9 +84,9 @@ class MissionHolder(
 
     override fun onError(e: Error?) {
         holder.progress_bar.beGone()
-        holder.stateBtn.text = "打开"
+        holder.stateBtn.text = "下载"
         holder.stateBtn.setShakelessClickListener {
-            onRun()
+            mission?.restart()
         }
     }
 

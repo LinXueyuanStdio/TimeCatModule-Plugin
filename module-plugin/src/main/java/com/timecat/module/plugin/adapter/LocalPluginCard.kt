@@ -72,13 +72,6 @@ class LocalPluginCard(
             }
             true
         }
-
-        if (payloads.isNullOrEmpty()) return
-        val obj = payloads.first()
-        if (obj is Block) {
-            val block = obj
-            // TODO 更新
-        }
     }
 
     fun run() {

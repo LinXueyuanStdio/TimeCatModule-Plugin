@@ -4,7 +4,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
-import com.timecat.module.plugin.adapter.LocalPluginItem
+import com.timecat.module.plugin.adapter.MissionItem
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.page.base.friend.toolbar.BaseListActivity
 import com.xiaojinzi.component.anno.RouterAnno
@@ -33,8 +33,7 @@ class PluginDownloadActivity : BaseListActivity(), DownloadManager.DownloadManag
         ZDownloader.getDownloadManager().addDownloadManagerListener(this)
         ZDownloader.getAllMissions { missions ->
             lifecycleScope.launch(Dispatchers.IO) {
-                val allPlugin = PluginDatabase.forFile(context).pluginDao().getAll()
-                val items = allPlugin.map { LocalPluginItem(context, it) }
+                val items = missions.map { MissionItem(context, it) }
                 withContext(Dispatchers.Main) {
                     adapter.reload(items)
                 }

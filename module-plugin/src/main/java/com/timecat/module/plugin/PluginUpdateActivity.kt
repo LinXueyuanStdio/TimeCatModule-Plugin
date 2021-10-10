@@ -7,7 +7,6 @@ import com.timecat.data.bmob.ext.net.allPluginApp
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.module.plugin.adapter.CloudPluginItem
-import com.timecat.module.plugin.adapter.LocalPluginItem
 import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.page.base.friend.toolbar.BaseListActivity
