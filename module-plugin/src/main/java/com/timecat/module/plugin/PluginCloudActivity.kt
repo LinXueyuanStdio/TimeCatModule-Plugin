@@ -4,6 +4,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.data.bmob.ext.bmob.requestBlock
 import com.timecat.data.bmob.ext.net.allPluginApp
+import com.timecat.identity.data.block.AppBlock
+import com.timecat.identity.data.block.PluginApp
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.module.plugin.adapter.CloudPluginItem
@@ -39,10 +41,15 @@ class PluginCloudActivity : BaseRefreshListActivity() {
             onSuccess = { blocks ->
                 lifecycleScope.launch(Dispatchers.IO) {
                     val missions = ZDownloader.getAllMissions()
-                    val allPlugin = PluginDatabase.forFile(context).pluginDao().getAll(blocks.map { it.objectId })
+                    val pluginUuids = blocks.map {
+                        val head = AppBlock.fromJson(it.structure)
+                        val head2 = PluginApp.fromJson(head.structure)
+                        head2.packageName
+                    }
+                    val allPlugin = PluginDatabase.forFile(context).pluginDao().getAll(pluginUuids)
                     val items = blocks.map { block ->
-                        val localPlugin = allPlugin.find { block.objectId == it.uuid }
-                        val mission = missions.find { block.objectId == it.uuid }
+                        val localPlugin = allPlugin.find { it.uuid in pluginUuids }
+                        val mission = missions.find { localPlugin?.managerApkFile(this@PluginCloudActivity)?.parent == it.downloadPath }
                         CloudPluginItem(context, block, mission, localPlugin)
                     }
                     withContext(Dispatchers.Main) {

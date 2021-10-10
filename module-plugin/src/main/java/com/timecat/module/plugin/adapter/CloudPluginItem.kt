@@ -117,7 +117,7 @@ class CloudPluginItem(
         val info = head2.updateInfo.firstOrNull()
         val versionCode = info?.version_code ?: 1
         val versionName = info?.version_name ?: "1.0.0"
-        val newPlugin = Plugin(0, objectId, TYPE_PluginEnter, title, versionCode, versionName)
+        val newPlugin = Plugin(0, head2.packageName, TYPE_PluginEnter, title, versionCode, versionName)
         return newPlugin
     }
 

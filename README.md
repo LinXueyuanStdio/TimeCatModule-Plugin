@@ -18,3 +18,4 @@
 
 总结：有提示升级的地方，必须升级。没提示升级的地方，保证正常使用。
 
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.tencent.shadow.dynamic.loader.impl.LoaderFactoryImpl" on path: DexPathList[[zip file "/data/user/0/com.timecat.plugin.fake/files/ShadowPluginManager/UnpackedPlugin/test-dynamic-manager/c86ad64370f56ea66c038772a8114d5d/plugin-release.zip/plugin-runtime-release.apk"],nativeLibraryDirectories=[/data/user/0/com.timecat.plugin.fake/files/ShadowPluginManager/UnpackedPlugin/test-dynamic-manager/lib/B0F44E88-D998-48B9-A625-270883DF5BC7_lib, /system/lib64, /system/product/lib64]]

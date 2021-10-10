@@ -52,15 +52,16 @@ class PluginRouterActivity : Activity() {
 
     private fun startPlugin(plugin: Plugin) {
         val bundle = Bundle()
-        bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, partKey)
-        bundle.putString(PluginHub.KEY_CLASSNAME, className)
-
+//        bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, partKey)
+//        bundle.putString(PluginHub.KEY_CLASSNAME, className)
+        bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, "plugin-shadow-app")
+        bundle.putString(PluginHub.KEY_CLASSNAME, "io.legado.app.ui.welcome.WelcomeActivity")
         val pluginManager = Shadow.getPluginManager(this, plugin)
-        if (className == null) {
-            pluginManager.enter(this, -1, bundle, enterCallback)
-        } else {
+//        if (className == null) {
+//            pluginManager.enter(this, -1, bundle, enterCallback)
+//        } else {
+//        }
             pluginManager.enter(this, PluginHub.FROM_ID_START_ACTIVITY, bundle, enterCallback)
-        }
     }
 
     val enterCallback :EnterCallback = object : EnterCallback {

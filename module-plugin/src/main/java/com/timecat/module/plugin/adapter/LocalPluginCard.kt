@@ -7,12 +7,18 @@ import com.timecat.data.bmob.data.common.Block
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.layout.ui.layout.setShakelessClickListener
+import com.timecat.middle.block.ext.launch
+import com.timecat.middle.block.ext.showFloatMenu
+import com.timecat.middle.block.ext.simpleItem
 import com.timecat.middle.block.service.ItemCommonListener
 import com.timecat.module.plugin.R
 import com.timecat.module.plugin.core.api.ApiParser
 import com.timecat.module.plugin.database.Plugin
+import com.timecat.module.plugin.database.PluginDatabase
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.Serializable
 
 /**
@@ -50,6 +56,21 @@ class LocalPluginCard(
         }
         holder.root.setShakelessClickListener {
             run()
+        }
+        holder.root.setOnLongClickListener {
+            showFloatMenu(it) {
+                listOf(
+                    simpleItem(0, "卸载插件", { true }) {
+                        context.launch(Dispatchers.IO) {
+                            PluginDatabase.forFile(context).pluginDao().delete(plugin)
+                            withContext(Dispatchers.Main) {
+                                adapter.removeItem(adapter.getGlobalPositionOf(this@LocalPluginCard))
+                            }
+                        }
+                    }
+                )
+            }
+            true
         }
 
         if (payloads.isNullOrEmpty()) return
