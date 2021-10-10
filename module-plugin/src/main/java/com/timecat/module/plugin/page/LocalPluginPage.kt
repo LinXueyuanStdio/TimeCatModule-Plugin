@@ -139,13 +139,13 @@ class LocalPluginPage : BaseSelectorPage() {
     }
 
     open suspend fun save() {
-        //TODO 将插件apk复制到目标文件夹下（由 schema 决定），再保存元数据到数据库
-        val plugin = Plugin(
-            0, UUID.randomUUID().toString(), formData.packageName,
-            formData.type, formData.title,
-            formData.managerVersionCode, formData.managerVersionName
-        )
         context?.let { context ->
+            // 将插件apk复制到目标文件夹下（由 schema 决定），再保存元数据到数据库
+            val plugin = Plugin(
+                0, UUID.randomUUID().toString(), formData.packageName,
+                formData.type, formData.title,
+                formData.managerVersionCode, formData.managerVersionName
+            )
             val targetApkFile = plugin.managerApkFile(context)
             FileUtils.copy(formData.file, targetApkFile)
             val db = PluginDatabase.forFile(context, PluginDatabase.NAME)
