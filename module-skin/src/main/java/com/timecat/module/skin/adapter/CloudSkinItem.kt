@@ -53,7 +53,7 @@ class CloudSkinItem(
     var skin: Skin? = null,
 ) : BaseItem<SkinCardVH>(block.objectId) {
 
-    override fun getLayoutRes(): Int = R.layout.plugin_item_cloud_plugin
+    override fun getLayoutRes(): Int = R.layout.skin_item_cloud_plugin
 
     var missionHolder: MissionHolder? = null
 

@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.slider.Slider
 import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.module.skin.ColorPickerData
@@ -37,7 +36,7 @@ class DesignItem(
         val title: TextView by lazy { root.findViewById(R.id.name) }
     }
 
-    override fun getLayoutRes(): Int = R.layout.t_item_design_my_theme
+    override fun getLayoutRes(): Int = R.layout.skin_item_design_my_theme
 
     override fun createViewHolder(
         view: View,

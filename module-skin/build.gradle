@@ -1,7 +1,7 @@
 apply from: "${project.rootDir}/gradle/module_header.gradle"
 
 android {
-    resourcePrefix "t_" //给 Module 内的资源名增加前缀, 避免资源名冲突
+    resourcePrefix "skin_" //给 Module 内的资源名增加前缀, 避免资源名冲突
     defaultConfig {
         // Used by Room, to test migrations
         javaCompileOptions {

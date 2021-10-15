@@ -22,7 +22,7 @@ class MissionItem(
     val mission: BaseMission<*>
 ) : BaseItem<SkinCardVH>(mission.uuid) {
 
-    override fun getLayoutRes(): Int = R.layout.plugin_item_local_plugin
+    override fun getLayoutRes(): Int = R.layout.skin_item_local_plugin
 
     override fun createViewHolder(
         view: View,

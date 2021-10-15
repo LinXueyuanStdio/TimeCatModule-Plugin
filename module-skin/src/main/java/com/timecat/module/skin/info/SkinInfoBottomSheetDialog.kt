@@ -11,7 +11,7 @@ import com.timecat.module.skin.R
 class SkinInfoBottomSheetDialog : BottomSheetDialogFragment() {
 
     override fun setupDialog(dialog: Dialog, style: Int) {
-        val view = LayoutInflater.from(requireContext()).inflate(R.layout.t_fragment_theme_info, null)
+        val view = LayoutInflater.from(requireContext()).inflate(R.layout.skin_fragment_theme_info, null)
         setupViews(view)
         dialog.setContentView(view)
     }

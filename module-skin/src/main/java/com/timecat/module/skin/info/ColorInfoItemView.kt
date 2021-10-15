@@ -17,7 +17,7 @@ class ColorInfoItemView @JvmOverloads constructor(context: Context, attrs: Attri
     private val colorTextView: AppCompatTextView by lazy { findViewById(R.id.colorTextView) }
 
     init {
-        View.inflate(context, R.layout.view_color_info_item, this)
+        View.inflate(context, R.layout.skin_item_color_info, this)
 
         context.withStyledAttributes(attrs, R.styleable.ColorInfoItemView) {
             setTitle(getString(R.styleable.ColorInfoItemView_title))

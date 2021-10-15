@@ -30,7 +30,7 @@ class LocalSkinCard(
     val listener: ItemCommonListener
 ) : BaseItem<SkinCardVH>(skin.uuid) {
 
-    override fun getLayoutRes(): Int = R.layout.plugin_item_local_plugin
+    override fun getLayoutRes(): Int = R.layout.skin_item_local_plugin
 
     override fun createViewHolder(
         view: View,
