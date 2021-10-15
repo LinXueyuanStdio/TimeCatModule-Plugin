@@ -3,16 +3,10 @@
           package="com.timecat.module.skin">
 
     <application>
-        <activity android:name=".SkinActivity"/>
-        <activity android:name=".SkinDetailActivity"/>
         <activity android:name=".SkinDesignActivity" />
         <activity android:name=".SkinDownloadActivity" />
         <activity android:name=".SkinUpdateActivity" />
         <activity android:name=".SkinCloudActivity" />
-
-        <meta-data
-            android:name="com.timecat.module.skin.base.GlobalConfiguration"
-            android:value="ConfigModule"/>
     </application>
 
 </manifest>
