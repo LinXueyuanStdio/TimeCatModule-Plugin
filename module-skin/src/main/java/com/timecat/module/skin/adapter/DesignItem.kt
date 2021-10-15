@@ -34,7 +34,7 @@ class DesignItem(
         val preview: Button by lazy { root.findViewById(R.id.preview) }
         val color_seek_bar: Slider by lazy { root.findViewById(R.id.color_seek_bar) }
         val alpha_seek_bar: Slider by lazy { root.findViewById(R.id.alpha_seek_bar) }
-        val title: TextView by lazy { root.findViewById(R.id.title) }
+        val title: TextView by lazy { root.findViewById(R.id.name) }
     }
 
     override fun getLayoutRes(): Int = R.layout.t_item_design_my_theme
