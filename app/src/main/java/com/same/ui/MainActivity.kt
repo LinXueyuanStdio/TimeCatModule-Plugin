@@ -20,8 +20,15 @@ class MainActivity : BaseSettingActivity() {
         container.Next("插件市场") {
             NAV.go(RouterHub.PLUGIN_PluginCloudActivity)
         }
+        container.Next("插件下载中心") {
+            NAV.go(RouterHub.PLUGIN_PluginDownloadActivity)
+        }
+
         container.Next("皮肤市场") {
-            NAV.go(RouterHub.SKIN_SkinActivity)
+            NAV.go(RouterHub.SKIN_SkinCloudActivity)
+        }
+        container.Next("皮肤下载中心") {
+            NAV.go(RouterHub.SKIN_SkinDownloadActivity)
         }
         container.Next("我的设计") {
             NAV.go(RouterHub.SKIN_SkinDesignActivity)

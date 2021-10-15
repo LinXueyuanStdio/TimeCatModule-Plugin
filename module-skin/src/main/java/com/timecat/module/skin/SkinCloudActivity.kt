@@ -1,13 +1,17 @@
 package com.timecat.module.skin
 
+import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.timecat.component.router.app.NAV
 import com.timecat.data.bmob.ext.bmob.requestBlock
 import com.timecat.data.bmob.ext.net.allPluginApp
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.module.skin.adapter.CloudSkinItem
 import com.timecat.module.skin.database.SkinDatabase
+import com.timecat.module.skin.info.SkinInfoBottomSheetDialog
 import com.timecat.page.base.friend.toolbar.BaseRefreshListActivity
 import com.xiaojinzi.component.anno.RouterAnno
 import com.zpj.downloader.ZDownloader
@@ -71,5 +75,19 @@ class SkinCloudActivity : BaseRefreshListActivity() {
     override fun onDestroy() {
         super.onDestroy()
         dispose?.dispose()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.skin_theme, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.current) {
+            SkinInfoBottomSheetDialog().showIfNeed(supportFragmentManager)
+        } else if (item.itemId == R.id.myTheme) {
+            NAV.go(RouterHub.SKIN_SkinDesignActivity)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
