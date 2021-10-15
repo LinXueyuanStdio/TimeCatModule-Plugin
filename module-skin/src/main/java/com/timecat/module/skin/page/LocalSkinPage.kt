@@ -31,7 +31,7 @@ import java.util.*
  * @description null
  * @usage null
  */
-class LocalPluginPage : BaseSelectorPage() {
+class LocalSkinPage : BaseSelectorPage() {
     override fun title(): String = "从本地安装"
 
     data class FormData(
@@ -146,7 +146,7 @@ class LocalPluginPage : BaseSelectorPage() {
                 formData.type, formData.title,
                 formData.managerVersionCode, formData.managerVersionName
             )
-            val targetApkFile = plugin.managerApkFile(context)
+            val targetApkFile = plugin.apkFile(context)
             FileUtils.copy(formData.file, targetApkFile)
             val db = SkinDatabase.forFile(context, SkinDatabase.NAME)
             db.pluginDao().insert(plugin)

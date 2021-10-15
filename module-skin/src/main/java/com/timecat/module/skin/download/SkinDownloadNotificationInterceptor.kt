@@ -1,5 +1,6 @@
 package com.timecat.module.skin.download
 
+import com.timecat.middle.download.DownloadNotificationInterceptor
 import com.timecat.module.skin.SkinDownloadActivity
 
 

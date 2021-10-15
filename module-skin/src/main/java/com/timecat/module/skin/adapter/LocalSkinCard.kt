@@ -2,8 +2,6 @@ package com.timecat.module.skin.adapter
 
 import android.content.Context
 import android.view.View
-import com.timecat.component.router.app.NAV
-import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.middle.block.ext.launch
@@ -11,14 +9,13 @@ import com.timecat.middle.block.ext.showFloatMenu
 import com.timecat.middle.block.ext.simpleItem
 import com.timecat.middle.block.service.ItemCommonListener
 import com.timecat.module.skin.R
-import com.timecat.module.skin.core.api.ApiParser
 import com.timecat.module.skin.database.Skin
 import com.timecat.module.skin.database.SkinDatabase
+import com.timecat.module.skin.ext.applySkin
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.Serializable
 
 /**
  * @author 林学渊
@@ -27,7 +24,7 @@ import java.io.Serializable
  * @description null
  * @usage null
  */
-class LocalPluginCard(
+class LocalSkinCard(
     val context: Context,
     val skin: Skin,
     val listener: ItemCommonListener
@@ -63,7 +60,7 @@ class LocalPluginCard(
                         context.launch(Dispatchers.IO) {
                             SkinDatabase.forFile(context).pluginDao().delete(skin)
                             withContext(Dispatchers.Main) {
-                                adapter.removeItem(adapter.getGlobalPositionOf(this@LocalPluginCard))
+                                adapter.removeItem(adapter.getGlobalPositionOf(this@LocalSkinCard))
                             }
                         }
                     }
@@ -74,11 +71,8 @@ class LocalPluginCard(
     }
 
     fun run() {
-        if (skin.canRecordApi()) {
-            val path = ApiParser.toPath(skin)
-            listener.navigateTo(skin.title, path, -100)
-        } else if (skin.canPluginEnter()) {
-            NAV.go(RouterHub.PLUGIN_PluginRouterActivity, "plugin", skin as Serializable)
+        context.launch(Dispatchers.IO) {
+            context.applySkin(skin)
         }
     }
 }

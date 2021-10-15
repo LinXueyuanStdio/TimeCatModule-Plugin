@@ -1,16 +1,11 @@
 package com.timecat.module.skin.ext
 
 import android.content.Context
-import android.os.Bundle
-import android.view.View
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
-import com.tencent.shadow.dynamic.host.EnterCallback
-import com.timecat.identity.readonly.PluginHub
-import com.timecat.middle.block.ext.prepareShowInService
+import com.timecat.element.alert.ToastUtil
+import com.timecat.identity.skin.CustomSDCardLoader
+import com.timecat.identity.skin.SkinManager
 import com.timecat.module.skin.database.Skin
-import com.timecat.module.skin.host.Shadow
+import skin.support.SkinCompatManager
 
 /**
  * @author 林学渊
@@ -19,41 +14,21 @@ import com.timecat.module.skin.host.Shadow
  * @description 必须放在 IO 线程里再调用以下方法
  * @usage null
  */
-fun Context.startPlugin(skin: Skin) {
-    val enterCallback = EmptyEnterCallback(this)
-    val bundle = Bundle()
-    val pluginManager = Shadow.getPluginManager(this, skin)
-    pluginManager.enter(this, -1, bundle, enterCallback)
+fun Context.applySkin(skin: Skin, listener: SkinCompatManager.SkinLoaderListener? = EmptySkinLoaderListener(this)) {
+    SkinCompatManager.getInstance().loadSkin(skin.apkFilePath(this), listener, CustomSDCardLoader.SKIN_LOADER_STRATEGY_SDCARD)
 }
 
-fun Context.startPluginActivity(skin: Skin, partKey: String = "plugin-shadow-app", activityName: String) {
-    val bundle = Bundle()
-    bundle.putString(PluginHub.KEY_PLUGIN_PART_KEY, partKey)
-    bundle.putString(PluginHub.KEY_CLASSNAME, activityName)
-    startPluginActivity(skin, bundle)
+fun Context.applyDefaultSkin() {
+    SkinManager.restoreDefaultTheme()
 }
 
-fun Context.startPluginActivity(skin: Skin, bundle: Bundle) {
-    val enterCallback = EmptyEnterCallback(this)
-    val pluginManager = Shadow.getPluginManager(this, skin)
-    pluginManager.enter(this, PluginHub.FROM_ID_START_ACTIVITY, bundle, enterCallback)
-}
-
-class EmptyEnterCallback(val ctx: Context) : EnterCallback {
-    var dialog: MaterialDialog? = null
-    override fun onShowLoadingView(view: View) {
-        dialog = MaterialDialog(ctx).show {
-            prepareShowInService()
-            lifecycleOwner()
-            customView(view = view)
-            cancelOnTouchOutside(false)
-        }
+class EmptySkinLoaderListener(val ctx: Context) : SkinCompatManager.SkinLoaderListener {
+    override fun onStart() {}
+    override fun onSuccess() {
+        ToastUtil.ok("喵")
     }
 
-    override fun onCloseLoadingView() {
-        dialog?.dismiss()
-    }
-
-    override fun onEnterComplete() {
+    override fun onFailed(errMsg: String) {
+        ToastUtil.e(errMsg)
     }
 }

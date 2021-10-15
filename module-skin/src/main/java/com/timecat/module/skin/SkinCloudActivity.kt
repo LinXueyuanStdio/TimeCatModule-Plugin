@@ -23,7 +23,7 @@ import kotlinx.coroutines.withContext
  * @description 插件市场
  * @usage
  */
-@RouterAnno(hostAndPath = RouterHub.PLUGIN_PluginCloudActivity)
+@RouterAnno(hostAndPath = RouterHub.SKIN_SkinCloudActivity)
 class SkinCloudActivity : BaseRefreshListActivity() {
     override fun title(): String = "插件市场"
     val adapter = BaseAdapter(null)
@@ -43,7 +43,7 @@ class SkinCloudActivity : BaseRefreshListActivity() {
                     val allPlugin = SkinDatabase.forFile(context).pluginDao().getAll(pluginUuids)
                     val items = blocks.map { block ->
                         val localPlugin = allPlugin.find { it.uuid in pluginUuids }
-                        val mission = missions.find { localPlugin?.managerApkFile(this@SkinCloudActivity)?.parent == it.downloadPath }
+                        val mission = missions.find { localPlugin?.apkFile(this@SkinCloudActivity)?.parent == it.downloadPath }
                         CloudSkinItem(context, block, mission, localPlugin)
                     }
                     withContext(Dispatchers.Main) {

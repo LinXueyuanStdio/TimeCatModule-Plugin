@@ -43,7 +43,8 @@ data class Skin(
     var managerVersionName: String,
 ) : Serializable, IPluginStatus {
 
-    fun managerApkFile(context: Context): File = SkinDir.managerApkFile(context, this)
+    fun apkFile(context: Context): File = SkinDir.managerApkFile(context, this)
+    fun apkFilePath(context: Context): String = apkFile(context).absolutePath
 
     override fun toString(): String {
         return "uuid=${uuid}, title=${title}, $type, ${statusDescription()}"

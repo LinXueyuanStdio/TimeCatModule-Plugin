@@ -19,6 +19,7 @@ import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.database.PluginDatabase
 import com.timecat.module.plugin.database.PluginDir
 import com.timecat.module.plugin.download.PluginDownloadNotificationInterceptor
+import com.timecat.module.plugin.ext.startPlugin
 import com.timecat.module.plugin.ext.toPlugin
 import com.timecat.module.plugin.ext.versionCode
 import com.zpj.downloader.BaseMission
@@ -143,7 +144,9 @@ class CloudPluginItem(
             ToastUtil.w("下载")
             return
         }
-        NAV.go(RouterHub.PLUGIN_PluginRouterActivity, "plugin", plugin as Serializable)
+        context.launch(Dispatchers.IO) {
+            context.startPlugin(plugin!!)
+        }
     }
 
     override fun onViewDetached(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: PluginCardVH, position: Int) {

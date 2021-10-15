@@ -15,6 +15,7 @@ import com.timecat.module.plugin.R
 import com.timecat.module.plugin.core.api.ApiParser
 import com.timecat.module.plugin.database.Plugin
 import com.timecat.module.plugin.database.PluginDatabase
+import com.timecat.module.plugin.ext.startPlugin
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import kotlinx.coroutines.Dispatchers
@@ -79,7 +80,9 @@ class LocalPluginCard(
             val path = ApiParser.toPath(plugin)
             listener.navigateTo(plugin.title, path, -100)
         } else if (plugin.canPluginEnter()) {
-            NAV.go(RouterHub.PLUGIN_PluginRouterActivity, "plugin", plugin as Serializable)
+            context.launch(Dispatchers.IO) {
+                context.startPlugin(plugin)
+            }
         }
     }
 }

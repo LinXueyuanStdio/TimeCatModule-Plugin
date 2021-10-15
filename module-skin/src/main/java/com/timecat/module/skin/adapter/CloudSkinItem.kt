@@ -18,7 +18,8 @@ import com.timecat.module.skin.R
 import com.timecat.module.skin.database.Skin
 import com.timecat.module.skin.database.SkinDatabase
 import com.timecat.module.skin.database.SkinDir
-import com.timecat.module.skin.download.DownloadNotificationInterceptor
+import com.timecat.module.skin.download.SkinDownloadNotificationInterceptor
+import com.timecat.module.skin.ext.applySkin
 import com.timecat.module.skin.ext.toPlugin
 import com.timecat.module.skin.ext.versionCode
 import com.zpj.downloader.BaseMission
@@ -128,8 +129,8 @@ class CloudSkinItem(
         missionHolder?.detach()
         val newPlugin = block.toPlugin()
         mission = ZDownloader.download(url, SkinDir.sPluginManagerName)
-            .setDownloadPath(newPlugin.managerApkFile(context).parent)
-            .setNotificationInterceptor(DownloadNotificationInterceptor())
+            .setDownloadPath(newPlugin.apkFile(context).parent)
+            .setNotificationInterceptor(SkinDownloadNotificationInterceptor())
         missionHolder = MissionHolder(holder, mission, {
             save()
         }) {
@@ -143,7 +144,9 @@ class CloudSkinItem(
             ToastUtil.w("下载")
             return
         }
-        NAV.go(RouterHub.PLUGIN_PluginRouterActivity, "plugin", skin as Serializable)
+        context.launch(Dispatchers.IO) {
+            context.applySkin(skin!!)
+        }
     }
 
     override fun onViewDetached(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: SkinCardVH, position: Int) {

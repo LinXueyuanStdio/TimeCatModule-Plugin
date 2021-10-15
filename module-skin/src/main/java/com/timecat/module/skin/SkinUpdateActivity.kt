@@ -24,7 +24,7 @@ import kotlinx.coroutines.withContext
  * @description 插件更新管理，所有插件的更新，用户手动更新
  * @usage
  */
-@RouterAnno(hostAndPath = RouterHub.PLUGIN_PluginUpdateActivity)
+@RouterAnno(hostAndPath = RouterHub.SKIN_SkinUpdateActivity)
 class SkinUpdateActivity : BaseListActivity() {
     val adapter = BaseAdapter(null)
 
@@ -52,7 +52,7 @@ class SkinUpdateActivity : BaseListActivity() {
                     val pluginUuids = blocks.map { it.objectId }
                     val items = blocks.map { block ->
                         val localPlugin = allSkin.find { it.uuid in pluginUuids }
-                        val mission = missions.find { localPlugin?.managerApkFile(this@SkinUpdateActivity)?.parent == it.downloadPath }
+                        val mission = missions.find { localPlugin?.apkFile(this@SkinUpdateActivity)?.parent == it.downloadPath }
                         CloudSkinItem(context, block, mission, localPlugin)
                     }
                     withContext(Dispatchers.Main) {
