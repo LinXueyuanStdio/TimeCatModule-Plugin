@@ -1,0 +1,11 @@
+apply from: "${project.rootDir}/gradle/library_header.gradle"
+
+dependencies {
+    api rootProject.ext.timecat["component-CommonSetting"]
+    api rootProject.ext.timecat["component-CommonStatic"]
+    api 'com.timecat.module:download:1.0.0'
+
+    api rootProject.ext.androidx_lib["appcompat"]
+}
+
+apply from: "${project.rootDir}/gradle/library_tail.gradle"

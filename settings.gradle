@@ -5,10 +5,12 @@ apply from: "context.gradle"
 include ':app'
 
 include ':module-skin'
-
 include ':module-plugin'
-include ':shared-host'
+
+include ':middle-download'
 include ':zdownloader'
+
+include ':shared-host'
 
 include ':api:record-api'
 include ':api:record-api-holder'

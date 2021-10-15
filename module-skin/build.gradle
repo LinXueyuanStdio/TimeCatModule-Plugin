@@ -2,18 +2,28 @@ apply from: "${project.rootDir}/gradle/module_header.gradle"
 
 android {
     resourcePrefix "t_" //给 Module 内的资源名增加前缀, 避免资源名冲突
-    kotlinOptions {
-        jvmTarget = "1.8"
+    defaultConfig {
+        // Used by Room, to test migrations
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true",
+                        "room.schemaLocation"  : "$projectDir/schemas".toString()
+                ]
+            }
+        }
     }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api rootProject.ext.timecat["component-CommonBase"]
-    api rootProject.ext.timecat["component-CommonUI"]
-
-    api rootProject.ext.timecat["component-SelfRouter"]
+    api rootProject.ext.timecat["middle-setting"]
+    api rootProject.ext.timecat["middle-block"]
+    api rootProject.ext.timecat["component-CommonBmob"]
     api rootProject.ext.timecat["component-CommonStatic"]
+
+    kapt rootProject.ext.androidx_lib["androidx.room:compiler"]
+    api 'com.timecat.module:download:1.0.0'
 }
 
 apply from: "${project.rootDir}/gradle/module_tail.gradle"
