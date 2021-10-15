@@ -31,7 +31,7 @@ class PluginDownloadActivity : BaseListActivity(), DownloadManager.DownloadManag
 
     override fun loadData() {
         ZDownloader.getDownloadManager().addDownloadManagerListener(this)
-        ZDownloader.getAllMissions { missions ->
+        ZDownloader.getAllMissions(true) { missions ->
             lifecycleScope.launch(Dispatchers.IO) {
                 val items = missions.map { MissionItem(context, it) }
                 withContext(Dispatchers.Main) {
