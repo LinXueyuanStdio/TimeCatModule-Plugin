@@ -7,7 +7,7 @@ import com.timecat.component.router.app.NAV
 import com.timecat.data.bmob.data.common.Block
 import com.timecat.element.alert.ToastUtil
 import com.timecat.identity.data.block.AppBlock
-import com.timecat.identity.data.block.PluginApp
+import com.timecat.identity.data.block.SkinApp
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.layout.ui.layout.setShakelessClickListener
@@ -71,7 +71,7 @@ class CloudSkinItem(
         holder.title.text = block.title
         val head = AppBlock.fromJson(block.structure)
         holder.avatar.bindSelected(adapter.isSelected(adapter.getGlobalPositionOf(this)), head.header.avatar, ColorUtils.randomColor())
-        val head2 = PluginApp.fromJson(head.structure)
+        val head2 = SkinApp.fromJson(head.structure)
         if (skin != null) {
             val stateText = "管理器：${skin?.managerVersionName}(${skin?.managerVersionCode})"
             holder.state.text = stateText
@@ -118,17 +118,17 @@ class CloudSkinItem(
 
     fun save() {
         context.launch(Dispatchers.IO) {
-            val newPlugin = block.toSkin()
-            SkinDatabase.forFile(context).skinDao().insert(newPlugin)
-            skin = newPlugin
+            val newSkin = block.toSkin()
+            SkinDatabase.forFile(context).skinDao().insert(newSkin)
+            skin = newSkin
         }
     }
 
     fun download(url: String, holder: SkinCardVH) {
         missionHolder?.detach()
-        val newPlugin = block.toSkin()
+        val newSkin = block.toSkin()
         mission = ZDownloader.download(url, SkinDir.skinFileName)
-            .setDownloadPath(newPlugin.apkFile(context).parent)
+            .setDownloadPath(newSkin.apkFile(context).parent)
             .setNotificationInterceptor(SkinDownloadNotificationInterceptor())
         missionHolder = MissionHolder(holder, mission, {
             save()

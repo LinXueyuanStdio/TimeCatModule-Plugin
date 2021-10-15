@@ -73,8 +73,8 @@ class SkinContainerServiceImpl : ContainerService {
                 listener.loadMore(lastPosition, currentPage)
             }
             val allSkins = SkinDatabase.forFile(context).skinDao().getAll(pageSize, 0)
-            val currentItems = allSkins.map { plugin ->
-                LocalSkinCard(context, plugin, listener)
+            val currentItems = allSkins.map { skin ->
+                LocalSkinCard(context, skin, listener)
             }
             withContext(Dispatchers.Main) {
                 callback.onVirtualLoadSuccess(currentItems)
@@ -86,8 +86,8 @@ class SkinContainerServiceImpl : ContainerService {
         context.launch(Dispatchers.IO) {
             val listener = homeService.itemCommonListener()
             val allSkins = SkinDatabase.forFile(context).skinDao().getAll(pageSize, offset)
-            val currentItems = allSkins.map { plugin ->
-                LocalSkinCard(context, plugin, listener)
+            val currentItems = allSkins.map { skin ->
+                LocalSkinCard(context, skin, listener)
             }
             withContext(Dispatchers.Main) {
                 callback.onVirtualLoadSuccess(currentItems)

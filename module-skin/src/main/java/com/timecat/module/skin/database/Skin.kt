@@ -50,7 +50,7 @@ data class Skin(
         return "uuid=${uuid}, title=${title}, $type, ${statusDescription()}"
     }
 
-    //region 2. IPluginStatus
+    //region 2. ISkinStatus
     //region Status 用 16 进制管理状态
     override fun updateStatus(s: Long, yes: Boolean) {
         super.updateStatus(s, yes)

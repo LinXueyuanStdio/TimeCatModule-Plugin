@@ -2,11 +2,9 @@ package com.timecat.module.skin.ext
 
 import com.timecat.data.bmob.data.common.Block
 import com.timecat.identity.data.block.AppBlock
-import com.timecat.identity.data.block.PluginApp
 import com.timecat.identity.data.block.SkinApp
 import com.timecat.module.skin.database.Skin
 import com.timecat.module.skin.database.TYPE_None
-import com.timecat.module.skin.database.TYPE_PluginEnter
 
 /**
  * @author 林学渊
@@ -23,6 +21,7 @@ fun Block.toSkin(): Skin {
     val versionName = info?.version_name ?: "1.0.0"
     return Skin(0, objectId, head2.packageName, TYPE_None, title, versionCode, versionName)
 }
+
 fun Block.versionCode(): Int {
     val head = AppBlock.fromJson(structure)
     val head2 = SkinApp.fromJson(head.structure)

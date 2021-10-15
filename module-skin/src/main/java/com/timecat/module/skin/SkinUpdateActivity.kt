@@ -3,7 +3,7 @@ package com.timecat.module.skin
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.data.bmob.ext.bmob.requestBlock
-import com.timecat.data.bmob.ext.net.allPluginApp
+import com.timecat.data.bmob.ext.net.allSkin
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.module.skin.adapter.CloudSkinItem
@@ -36,25 +36,25 @@ class SkinUpdateActivity : BaseListActivity() {
     override fun loadData() {
         mStatefulLayout?.showLoading("检查更新中")
         lifecycleScope.launch(Dispatchers.IO) {
-            val allPlugin = SkinDatabase.forFile(context).skinDao().getAll()
-            loadCloud(allPlugin)
+            val allSkin = SkinDatabase.forFile(context).skinDao().getAll()
+            loadCloud(allSkin)
         }
     }
 
     private fun loadCloud(allSkin: List<Skin>) {
         dispose?.dispose()
         dispose = requestBlock {
-            query = allPluginApp().apply {
+            query = allSkin().apply {
                 whereContainedIn("objectId", allSkin.map { it.uuid })
             }
             onSuccess = { blocks ->
                 lifecycleScope.launch(Dispatchers.IO) {
                     val missions = ZDownloader.getAllMissions()
-                    val pluginUuids = blocks.map { it.objectId }
+                    val uuids = blocks.map { it.objectId }
                     val items = blocks.map { block ->
-                        val localPlugin = allSkin.find { it.uuid in pluginUuids }
-                        val mission = missions.find { localPlugin?.apkFile(this@SkinUpdateActivity)?.parent == it.downloadPath }
-                        CloudSkinItem(context, block, mission, localPlugin)
+                        val localSkin = allSkin.find { it.uuid in uuids }
+                        val mission = missions.find { localSkin?.apkFile(this@SkinUpdateActivity)?.parent == it.downloadPath }
+                        CloudSkinItem(context, block, mission, localSkin)
                     }
                     val restoreDefaultSkin = RestoreDefaultSkinItem(context)
                     withContext(Dispatchers.Main) {

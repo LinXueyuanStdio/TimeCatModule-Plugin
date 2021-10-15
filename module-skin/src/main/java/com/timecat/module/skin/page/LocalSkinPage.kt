@@ -16,7 +16,6 @@ import com.timecat.module.skin.R
 import com.timecat.module.skin.database.Skin
 import com.timecat.module.skin.database.SkinDatabase
 import com.timecat.module.skin.database.TYPE_None
-import com.timecat.module.skin.database.TYPE_PluginEnter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -67,7 +66,7 @@ class LocalSkinPage : BaseSelectorPage() {
             }
 
             Divider()
-            val pluginNext = Next("选择皮肤文件") {
+            val skinNext = Next("选择皮肤文件") {
                 selectSkinFile(it)
             }
             Divider()
@@ -79,7 +78,7 @@ class LocalSkinPage : BaseSelectorPage() {
                     isNotEmpty().description("请输入名称!")
                 }
 
-                next(pluginNext, "必须选择一个皮肤文件", false) {
+                next(skinNext, "必须选择一个皮肤文件", false) {
                     isNotEmpty().description("请选择一个皮肤文件!")
                 }
 
@@ -116,15 +115,15 @@ class LocalSkinPage : BaseSelectorPage() {
     open suspend fun save() {
         context?.let { context ->
             // 将插件apk复制到目标文件夹下（由 schema 决定），再保存元数据到数据库
-            val plugin = Skin(
+            val skin = Skin(
                 0, UUID.randomUUID().toString(), formData.packageName,
                 formData.type, formData.title,
                 formData.managerVersionCode, formData.managerVersionName
             )
-            val targetApkFile = plugin.apkFile(context)
+            val targetApkFile = skin.apkFile(context)
             FileUtils.copy(formData.file, targetApkFile)
             val db = SkinDatabase.forFile(context, SkinDatabase.NAME)
-            db.skinDao().insert(plugin)
+            db.skinDao().insert(skin)
         }
     }
 }

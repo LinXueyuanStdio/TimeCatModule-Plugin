@@ -46,9 +46,9 @@ class SkinCloudActivity : BaseRefreshListActivity() {
                     val uuids = blocks.map { it.objectId }
                     val allSkins = SkinDatabase.forFile(context).skinDao().getAll(uuids)
                     val items = blocks.map { block ->
-                        val localPlugin = allSkins.find { it.uuid in uuids }
-                        val mission = missions.find { localPlugin?.apkFile(this@SkinCloudActivity)?.parent == it.downloadPath }
-                        CloudSkinItem(context, block, mission, localPlugin)
+                        val localSkin = allSkins.find { it.uuid in uuids }
+                        val mission = missions.find { localSkin?.apkFile(this@SkinCloudActivity)?.parent == it.downloadPath }
+                        CloudSkinItem(context, block, mission, localSkin)
                     }
                     withContext(Dispatchers.Main) {
                         mRefreshLayout.isRefreshing = false

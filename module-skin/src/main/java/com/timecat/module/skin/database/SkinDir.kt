@@ -14,9 +14,9 @@ import java.io.File
  *     - uuid
  *       - skin
  *         - 1.0.0
- *           - plugin-manager.apk
+ *           - skin.apk
  *         - 1.0.1
- *           - plugin-manager.apk
+ *           - skin.apk
  * @usage null
  */
 object SkinDir {
@@ -42,9 +42,9 @@ object SkinDir {
 
     @JvmStatic
     fun getSkinDir(context: Context): String? {
-        val pluginDir = File(getCacheDir(context), SKIN_DEPLOY_PATH)
-        return if (pluginDir.exists() || pluginDir.mkdirs()) {
-            pluginDir.absolutePath
+        val skinDir = File(getCacheDir(context), SKIN_DEPLOY_PATH)
+        return if (skinDir.exists() || skinDir.mkdirs()) {
+            skinDir.absolutePath
         } else null
     }
 
