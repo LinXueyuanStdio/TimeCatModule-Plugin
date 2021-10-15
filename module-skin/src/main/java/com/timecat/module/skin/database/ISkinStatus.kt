@@ -9,10 +9,11 @@ import com.timecat.identity.data.base.IStatus
  * @description null
  * @usage null
  */
+const val TYPE_None: Long = 0x00000000
 const val TYPE_PluginEnter: Long = 0x00000001
 const val TYPE_RecordApi: Long = 0x00000002
 
-interface IPluginStatus : IStatus {
+interface ISkinStatus : IStatus {
     fun canPluginEnter(): Boolean = isStatusEnabled(TYPE_PluginEnter)
     fun canRecordApi(): Boolean = isStatusEnabled(TYPE_RecordApi)
 

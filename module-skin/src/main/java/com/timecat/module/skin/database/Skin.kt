@@ -36,14 +36,14 @@ data class Skin(
     /**
      * 实现类型
      */
-    var type: Long = TYPE_PluginEnter,
+    var type: Long = TYPE_None,
     var title: String,
 
     var managerVersionCode: Int,
     var managerVersionName: String,
-) : Serializable, IPluginStatus {
+) : Serializable, ISkinStatus {
 
-    fun apkFile(context: Context): File = SkinDir.managerApkFile(context, this)
+    fun apkFile(context: Context): File = SkinDir.skinFile(context, this)
     fun apkFilePath(context: Context): String = apkFile(context).absolutePath
 
     override fun toString(): String {

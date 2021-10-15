@@ -52,7 +52,7 @@ class LocalSkinPage : BaseSelectorPage() {
 
     override fun addSettingItems(context: Context, container: ViewGroup) {
         container.apply {
-            val titleItem = OneLineInput("插件名", formData.title) {
+            val titleItem = OneLineInput("皮肤名", formData.title) {
                 formData.title = it ?: ""
             }
             OneLineInput("唯一标示码", formData.packageName) {
@@ -66,13 +66,10 @@ class LocalSkinPage : BaseSelectorPage() {
             OneLineInput("版本名", formData.managerVersionName) {
                 formData.managerVersionName = it ?: "1.0.0"
             }
-            val typeNext = Next("该插件已实现的接口") {
-                selectType(it)
-            }
 
             Divider()
-            val pluginNext = Next("选择插件文件") {
-                selectPluginFile(it)
+            val pluginNext = Next("选择皮肤文件") {
+                selectSkinFile(it)
             }
             Divider()
 
@@ -83,11 +80,8 @@ class LocalSkinPage : BaseSelectorPage() {
                     isNotEmpty().description("请输入名称!")
                 }
 
-                next(typeNext, "必须选择该插件已实现的接口", false) {
-                    isNotEmpty().description("请选择该插件已实现的接口!")
-                }
-                next(pluginNext, "必须选择一个插件文件", false) {
-                    isNotEmpty().description("请选择一个插件文件!")
+                next(pluginNext, "必须选择一个皮肤文件", false) {
+                    isNotEmpty().description("请选择一个皮肤文件!")
                 }
 
                 submitWith(btnOk) { result ->
@@ -97,25 +91,7 @@ class LocalSkinPage : BaseSelectorPage() {
         }
     }
 
-    private fun selectType(nextItem: NextItem) {
-        context.showDialog {
-            val items = listOf(
-                "主页面接口",
-                "符文系统接口",
-            )
-            listItemsMultiChoice(items = items, initialSelection = intArrayOf(0)) { d, idxs, selectedItems ->
-                var typeState = 0L
-                if (0 in idxs) typeState = typeState or TYPE_PluginEnter
-                if (1 in idxs) typeState = typeState or TYPE_RecordApi
-                formData.type = typeState
-                nextItem.hint = selectedItems.joinToString(", ")
-            }
-            positiveButton(R.string.ok)
-            negativeButton(R.string.cancel)
-        }
-    }
-
-    private fun selectPluginFile(nextItem: NextItem) {
+    private fun selectSkinFile(nextItem: NextItem) {
         context.showDialog {
             fileChooser(context, filter = {
                 it.isDirectory || it.endsWith(".apk")

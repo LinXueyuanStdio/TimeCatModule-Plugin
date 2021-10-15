@@ -28,7 +28,6 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import kotlinx.coroutines.Dispatchers
 import org.joda.time.DateTime
-import java.io.Serializable
 
 /**
  * @author 林学渊
@@ -128,7 +127,7 @@ class CloudSkinItem(
     fun download(url: String, holder: SkinCardVH) {
         missionHolder?.detach()
         val newPlugin = block.toPlugin()
-        mission = ZDownloader.download(url, SkinDir.sPluginManagerName)
+        mission = ZDownloader.download(url, SkinDir.skinFileName)
             .setDownloadPath(newPlugin.apkFile(context).parent)
             .setNotificationInterceptor(SkinDownloadNotificationInterceptor())
         missionHolder = MissionHolder(holder, mission, {
