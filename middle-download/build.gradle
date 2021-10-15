@@ -1,11 +1,10 @@
 apply from: "${project.rootDir}/gradle/library_header.gradle"
+apply plugin: "kotlin-android"
 
 dependencies {
     api rootProject.ext.timecat["component-CommonSetting"]
     api rootProject.ext.timecat["component-CommonStatic"]
-    api 'com.timecat.module:download:1.0.0'
-
-    api rootProject.ext.androidx_lib["appcompat"]
+    api 'com.timecat.component:download:+'
 }
 
 apply from: "${project.rootDir}/gradle/library_tail.gradle"

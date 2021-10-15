@@ -23,7 +23,7 @@ dependencies {
     api rootProject.ext.timecat["component-CommonStatic"]
 
     kapt rootProject.ext.androidx_lib["androidx.room:compiler"]
-    api 'com.timecat.module:download:1.0.0'
+    api 'com.timecat.middle:download:+'
 }
 
 apply from: "${project.rootDir}/gradle/module_tail.gradle"
