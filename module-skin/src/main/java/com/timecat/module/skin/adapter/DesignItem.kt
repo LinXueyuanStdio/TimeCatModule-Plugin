@@ -31,12 +31,10 @@ class DesignItem(
     }
 
     class DesignCardVH(val root: View, adapter: FlexibleAdapter<*>) : FlexibleViewHolder(root, adapter) {
-        val frontView: ConstraintLayout by lazy { root.findViewById(R.id.front_view) }
         val preview: Button by lazy { root.findViewById(R.id.preview) }
         val color_seek_bar: Slider by lazy { root.findViewById(R.id.color_seek_bar) }
         val alpha_seek_bar: Slider by lazy { root.findViewById(R.id.alpha_seek_bar) }
         val title: TextView by lazy { root.findViewById(R.id.title) }
-        val state: TextView by lazy { root.findViewById(R.id.state) }
     }
 
     override fun getLayoutRes(): Int = R.layout.t_item_design_my_theme
@@ -52,7 +50,7 @@ class DesignItem(
         position: Int,
         payloads: MutableList<Any>?
     ) {
-        val color = Integer.valueOf(item!!.getValue(), 16)
+        val color = Integer.valueOf(item.getValue(), 16)
         val alpha = Integer.valueOf(item.getAlpha(), 16)
         holder.title.text = item.name
         val mColorSeekBar = holder.color_seek_bar

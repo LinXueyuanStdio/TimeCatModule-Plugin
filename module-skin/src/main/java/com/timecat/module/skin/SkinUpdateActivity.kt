@@ -7,6 +7,7 @@ import com.timecat.data.bmob.ext.net.allPluginApp
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.module.skin.adapter.CloudSkinItem
+import com.timecat.module.skin.adapter.RestoreDefaultSkinItem
 import com.timecat.module.skin.database.Skin
 import com.timecat.module.skin.database.SkinDatabase
 import com.timecat.page.base.friend.toolbar.BaseListActivity
@@ -55,13 +56,10 @@ class SkinUpdateActivity : BaseListActivity() {
                         val mission = missions.find { localPlugin?.apkFile(this@SkinUpdateActivity)?.parent == it.downloadPath }
                         CloudSkinItem(context, block, mission, localPlugin)
                     }
+                    val restoreDefaultSkin = RestoreDefaultSkinItem(context)
                     withContext(Dispatchers.Main) {
-                        if (items.isEmpty()) {
-                            mStatefulLayout?.showEmpty("您的插件全部是最新的！")
-                        } else {
-                            adapter.reload(items)
-                            mStatefulLayout?.showContent()
-                        }
+                        mStatefulLayout?.showContent()
+                        adapter.reload(listOf(restoreDefaultSkin) + items)
                     }
                 }
             }
