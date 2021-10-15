@@ -20,7 +20,7 @@ import com.timecat.module.skin.database.SkinDatabase
 import com.timecat.module.skin.database.SkinDir
 import com.timecat.module.skin.download.SkinDownloadNotificationInterceptor
 import com.timecat.module.skin.ext.applySkin
-import com.timecat.module.skin.ext.toPlugin
+import com.timecat.module.skin.ext.toSkin
 import com.timecat.module.skin.ext.versionCode
 import com.zpj.downloader.BaseMission
 import com.zpj.downloader.ZDownloader
@@ -118,7 +118,7 @@ class CloudSkinItem(
 
     fun save() {
         context.launch(Dispatchers.IO) {
-            val newPlugin = block.toPlugin()
+            val newPlugin = block.toSkin()
             SkinDatabase.forFile(context).skinDao().insert(newPlugin)
             skin = newPlugin
         }
@@ -126,7 +126,7 @@ class CloudSkinItem(
 
     fun download(url: String, holder: SkinCardVH) {
         missionHolder?.detach()
-        val newPlugin = block.toPlugin()
+        val newPlugin = block.toSkin()
         mission = ZDownloader.download(url, SkinDir.skinFileName)
             .setDownloadPath(newPlugin.apkFile(context).parent)
             .setNotificationInterceptor(SkinDownloadNotificationInterceptor())

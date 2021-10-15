@@ -15,9 +15,7 @@ class ColorPickerData {
         }
     }
 
-    fun getAlpha(): String {
-        return alpha
-    }
+    fun getAlpha(): String = alpha
 
     fun setValue(value: String) {
         var value = value
@@ -34,9 +32,7 @@ class ColorPickerData {
         }
     }
 
-    fun getValue(): String {
-        return value
-    }
+    fun getValue(): String = value
 
     val color: String
         get() = "#$alpha$value"

@@ -14,16 +14,13 @@ const val TYPE_PluginEnter: Long = 0x00000001
 const val TYPE_RecordApi: Long = 0x00000002
 
 interface ISkinStatus : IStatus {
-    fun canPluginEnter(): Boolean = isStatusEnabled(TYPE_PluginEnter)
-    fun canRecordApi(): Boolean = isStatusEnabled(TYPE_RecordApi)
+    fun appSkin(): Boolean = isStatusEnabled(TYPE_None)
 
-    fun setPluginEnter(yes: Boolean) = updateStatus(TYPE_PluginEnter, yes)
-    fun setRecordApi(yes: Boolean) = updateStatus(TYPE_RecordApi, yes)
+    fun setAppSkin(yes: Boolean) = updateStatus(TYPE_None, yes)
 
     override fun statusDescription(): String {
         val stringBuilder = StringBuilder()
-        stringBuilder.append(if (canPluginEnter()) "插件主页面 " else "")
-        stringBuilder.append(if (canRecordApi()) "符文体系 " else "")
+        stringBuilder.append(if (appSkin()) "应用皮肤 " else "")
         return stringBuilder.toString()
     }
 }

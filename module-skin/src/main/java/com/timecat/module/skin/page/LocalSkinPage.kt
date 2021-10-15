@@ -15,6 +15,7 @@ import com.timecat.middle.block.page.BaseSelectorPage
 import com.timecat.module.skin.R
 import com.timecat.module.skin.database.Skin
 import com.timecat.module.skin.database.SkinDatabase
+import com.timecat.module.skin.database.TYPE_None
 import com.timecat.module.skin.database.TYPE_PluginEnter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,7 +36,7 @@ class LocalSkinPage : BaseSelectorPage() {
     data class FormData(
         var file: File = Environment.getDataDirectory(),
         var packageName: String = "",
-        var type: Long = TYPE_PluginEnter,
+        var type: Long = TYPE_None,
         var title: String = "",
 
         var managerVersionCode: Int = 0,
