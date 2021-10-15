@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.layout.ui.layout.setShakelessClickListener
+import com.timecat.middle.block.ext.showDialog
 import com.timecat.module.skin.R
 import com.zpj.downloader.BaseMission
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -63,6 +64,21 @@ class MissionItem(
                 }
                 holder.root.setShakelessClickListener {
                     mission.pause()
+                }
+            }
+            else -> {
+                holder.stateBtn.text = "查看"
+                holder.stateBtn.setShakelessClickListener {
+                    context.showDialog {
+                        title(text = "下载任务详情")
+                        message(text = "${mission.name}\nurl: ${mission.getOriginUrl()}")
+                    }
+                }
+                holder.root.setShakelessClickListener {
+                    context.showDialog {
+                        title(text = "下载任务详情")
+                        message(text = "${mission.name}\nurl: ${mission.getOriginUrl()}")
+                    }
                 }
             }
         }
