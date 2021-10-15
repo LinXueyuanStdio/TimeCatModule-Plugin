@@ -6,7 +6,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.component.router.app.NAV
 import com.timecat.data.bmob.ext.bmob.requestBlock
-import com.timecat.data.bmob.ext.net.allPluginApp
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.module.skin.adapter.CloudSkinItem
@@ -29,7 +28,7 @@ import kotlinx.coroutines.withContext
  */
 @RouterAnno(hostAndPath = RouterHub.SKIN_SkinCloudActivity)
 class SkinCloudActivity : BaseRefreshListActivity() {
-    override fun title(): String = "插件市场"
+    override fun title(): String = "皮肤市场"
     val adapter = BaseAdapter(null)
     override fun getAdapter(): RecyclerView.Adapter<*> = adapter
 
@@ -39,14 +38,14 @@ class SkinCloudActivity : BaseRefreshListActivity() {
         mStatefulLayout?.showLoading("加载中，请耐心等待...")
         dispose?.dispose()
         dispose = requestBlock {
-            query = allPluginApp()
+            query = allSkin()
             onSuccess = { blocks ->
                 lifecycleScope.launch(Dispatchers.IO) {
                     val missions = ZDownloader.getAllMissions()
-                    val pluginUuids = blocks.map { it.objectId }
-                    val allPlugin = SkinDatabase.forFile(context).pluginDao().getAll(pluginUuids)
+                    val uuids = blocks.map { it.objectId }
+                    val allSkins = SkinDatabase.forFile(context).skinDao().getAll(uuids)
                     val items = blocks.map { block ->
-                        val localPlugin = allPlugin.find { it.uuid in pluginUuids }
+                        val localPlugin = allSkins.find { it.uuid in uuids }
                         val mission = missions.find { localPlugin?.apkFile(this@SkinCloudActivity)?.parent == it.downloadPath }
                         CloudSkinItem(context, block, mission, localPlugin)
                     }

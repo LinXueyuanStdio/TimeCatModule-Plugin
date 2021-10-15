@@ -72,7 +72,7 @@ class SkinContainerServiceImpl : ContainerService {
             configAdapterEndlessLoad(listener.adapter(), false, pageSize, 4, notMoreItem) { lastPosition: Int, currentPage: Int ->
                 listener.loadMore(lastPosition, currentPage)
             }
-            val allSkins = SkinDatabase.forFile(context).pluginDao().getAll(pageSize, 0)
+            val allSkins = SkinDatabase.forFile(context).skinDao().getAll(pageSize, 0)
             val currentItems = allSkins.map { plugin ->
                 LocalSkinCard(context, plugin, listener)
             }
@@ -85,7 +85,7 @@ class SkinContainerServiceImpl : ContainerService {
     override fun loadMoreForVirtualPath(context: Context, parentUuid: String, offset: Int, homeService: HomeService, callback: ContainerService.LoadMoreCallback) {
         context.launch(Dispatchers.IO) {
             val listener = homeService.itemCommonListener()
-            val allSkins = SkinDatabase.forFile(context).pluginDao().getAll(pageSize, offset)
+            val allSkins = SkinDatabase.forFile(context).skinDao().getAll(pageSize, offset)
             val currentItems = allSkins.map { plugin ->
                 LocalSkinCard(context, plugin, listener)
             }

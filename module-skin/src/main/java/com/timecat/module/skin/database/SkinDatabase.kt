@@ -20,7 +20,7 @@ import androidx.room.RoomDatabase
     exportSchema = true,
 )
 abstract class SkinDatabase : RoomDatabase() {
-    abstract fun pluginDao(): SkinDao
+    abstract fun skinDao(): SkinDao
 
     companion object {
         const val NAME = "timecat_skin_room.db"

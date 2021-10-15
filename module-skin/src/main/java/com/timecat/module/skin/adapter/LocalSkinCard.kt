@@ -58,7 +58,7 @@ class LocalSkinCard(
                 listOf(
                     simpleItem(0, "卸载插件", { true }) {
                         context.launch(Dispatchers.IO) {
-                            SkinDatabase.forFile(context).pluginDao().delete(skin)
+                            SkinDatabase.forFile(context).skinDao().delete(skin)
                             withContext(Dispatchers.Main) {
                                 adapter.removeItem(adapter.getGlobalPositionOf(this@LocalSkinCard))
                             }

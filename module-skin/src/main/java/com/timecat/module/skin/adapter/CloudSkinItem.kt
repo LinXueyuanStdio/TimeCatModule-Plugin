@@ -119,7 +119,7 @@ class CloudSkinItem(
     fun save() {
         context.launch(Dispatchers.IO) {
             val newPlugin = block.toPlugin()
-            SkinDatabase.forFile(context).pluginDao().insert(newPlugin)
+            SkinDatabase.forFile(context).skinDao().insert(newPlugin)
             skin = newPlugin
         }
     }

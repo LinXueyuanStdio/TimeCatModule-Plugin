@@ -5,7 +5,6 @@ import android.os.Environment
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.files.fileChooser
-import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.blankj.utilcode.util.FileUtils
 import com.timecat.element.alert.ToastUtil
 import com.timecat.layout.ui.business.form.*
@@ -17,7 +16,6 @@ import com.timecat.module.skin.R
 import com.timecat.module.skin.database.Skin
 import com.timecat.module.skin.database.SkinDatabase
 import com.timecat.module.skin.database.TYPE_PluginEnter
-import com.timecat.module.skin.database.TYPE_RecordApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -125,7 +123,7 @@ class LocalSkinPage : BaseSelectorPage() {
             val targetApkFile = plugin.apkFile(context)
             FileUtils.copy(formData.file, targetApkFile)
             val db = SkinDatabase.forFile(context, SkinDatabase.NAME)
-            db.pluginDao().insert(plugin)
+            db.skinDao().insert(plugin)
         }
     }
 }

@@ -36,7 +36,7 @@ class SkinUpdateActivity : BaseListActivity() {
     override fun loadData() {
         mStatefulLayout?.showLoading("检查更新中")
         lifecycleScope.launch(Dispatchers.IO) {
-            val allPlugin = SkinDatabase.forFile(context).pluginDao().getAll()
+            val allPlugin = SkinDatabase.forFile(context).skinDao().getAll()
             loadCloud(allPlugin)
         }
     }
